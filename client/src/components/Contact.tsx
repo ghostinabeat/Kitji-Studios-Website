@@ -39,19 +39,30 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message Sent Successfully!",
-        description: "We'll get back to you within 24 hours to discuss your project.",
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
-      
-      form.reset();
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "We'll get back to you within 24 hours to discuss your project. Your message has been forwarded to support@kitjistudios.com",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: "Failed to send message. Please try again or contact us directly at support@kitjistudios.com",
         variant: "destructive",
       });
     }
@@ -86,8 +97,8 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "smarshall@kitjistudios.com",
-      description: "Direct line to our team lead"
+      details: "support@kitjistudios.com",
+      description: "General inquiries and support"
     },
     {
       icon: Phone,

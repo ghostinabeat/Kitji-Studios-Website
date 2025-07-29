@@ -11,11 +11,11 @@ export const users = pgTable("users", {
 
 export const contactSubmissions = pgTable("contact_submissions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
+  name: text("name").notNull(),
   email: text("email").notNull(),
   company: text("company"),
   projectType: text("project_type").notNull(),
+  budget: text("budget"),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
@@ -26,11 +26,11 @@ export const insertUserSchema = createInsertSchema(users).pick({
 });
 
 export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).pick({
-  firstName: true,
-  lastName: true,
+  name: true,
   email: true,
   company: true,
   projectType: true,
+  budget: true,
   message: true,
 });
 
