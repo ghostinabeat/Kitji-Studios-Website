@@ -39,9 +39,9 @@ export default function Footer() {
     "Custom Software Development",
     "Utell - Web3 Trust Platform",
     "Pelas - Resource Management",
+    "Sales Management Software",
     "WhatsApp Business Integration",
     "System Design & Consulting",
-    "Business Intelligence & Analytics",
   ];
 
   const socialLinks = [

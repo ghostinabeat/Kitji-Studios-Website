@@ -73,6 +73,30 @@ export default function CloudProducts() {
       pricing: "Contact for Enterprise Pricing"
     },
     {
+      icon: TrendingUp,
+      title: "Sales Management Software",
+      subtitle: "Cloud-Based CRM Solution",
+      description: "Comprehensive cloud-based sales management platform designed to streamline your sales processes and boost revenue.",
+      features: [
+        "Lead management and tracking",
+        "Pipeline visualization and forecasting",
+        "Customer relationship management",
+        "Sales team performance analytics",
+        "Integration with email and calendar",
+        "Mobile-first responsive design",
+        "Real-time sales insights",
+        "Automated follow-up sequences"
+      ],
+      benefits: [
+        "30% increase in sales productivity",
+        "Real-time sales insights",
+        "Automated follow-up sequences",
+        "Seamless team collaboration"
+      ],
+      color: "from-purple-600 to-pink-600",
+      pricing: "Starting from $49/user/month"
+    },
+    {
       icon: MessageSquare,
       title: "WhatsApp Business Integration",
       subtitle: "Official BSP Certified Solutions",

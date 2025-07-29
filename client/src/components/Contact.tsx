@@ -61,6 +61,7 @@ export default function Contact() {
     "Custom Software Development",
     "Utell - Web3 Trust Platform",
     "Pelas - Resource Management System",
+    "Sales Management Software",
     "WhatsApp Business Integration",
     "System Design & Workflow Optimization",
     "Legacy System Modernization",

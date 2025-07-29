@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Code2, MessageSquare, BarChart4, Clock, CheckCircle, Building2, Globe } from "lucide-react";
+import { ArrowRight, Code2, MessageSquare, BarChart4, Clock, CheckCircle, Building2, Globe, TrendingUp } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function HeroClean() {
@@ -41,10 +41,9 @@ export default function HeroClean() {
       description: "Intelligent resource management integrating HR, finance, and time tracking"
     },
     {
-      icon: MessageSquare,
-      title: "WhatsApp Business Integration",
-      subtitle: "Official BSP Certified",
-      description: "Complete automation and customer engagement solutions"
+      icon: TrendingUp,
+      title: "Sales Management Software",
+      description: "Cloud-based CRM with pipeline management and analytics"
     }
   ];
 
