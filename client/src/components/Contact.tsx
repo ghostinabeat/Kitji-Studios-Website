@@ -59,11 +59,15 @@ export default function Contact() {
 
   const projectTypes = [
     "Custom Software Development",
-    "System Integration",
-    "Business Intelligence",
+    "WhatsApp Business Integration",
+    "Sales Management Software",
+    "Overtime Management Software",
+    "System Design & Workflow Optimization",
+    "Legacy System Modernization",
+    "Business Intelligence & Analytics",
     "Web3/Blockchain Solution",
     "API Development",
-    "Legacy Modernization",
+    "System Integration",
     "Consulting Services",
     "Other"
   ];
@@ -81,8 +85,8 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@kitjistudios.com",
-      description: "Get a response within 24 hours"
+      details: "smarshall@kitjistudios.com",
+      description: "Direct line to our team lead"
     },
     {
       icon: Phone,
@@ -92,9 +96,9 @@ export default function Contact() {
     },
     {
       icon: MapPin,
-      title: "Global Reach",
-      details: "Serving clients worldwide",
-      description: "Remote-first with local expertise"
+      title: "Based in Barbados",
+      details: "Serving clients globally",
+      description: "Caribbean expertise, worldwide reach"
     },
     {
       icon: Clock,

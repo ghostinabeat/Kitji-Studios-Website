@@ -34,9 +34,9 @@ export default function Services() {
     },
     {
       icon: Building2,
-      title: "Management Consulting",
-      description: "Navigate business complexities and achieve growth. We help transform your strategies into actionable results.",
-      features: ["Process Optimization", "Digital Transformation", "Strategic Planning", "Performance Improvement"],
+      title: "System Design & Workflow Optimization",
+      description: "Strategic consulting services to optimize your business processes, system architecture, and operational workflows for maximum efficiency.",
+      features: ["System Architecture Design", "Process Optimization", "Workflow Automation", "Digital Transformation Strategy"],
       color: "bg-emerald-100 text-emerald-600",
       industries: ["Finance", "Healthcare", "Manufacturing"]
     },
@@ -58,9 +58,9 @@ export default function Services() {
     },
     {
       icon: Settings,
-      title: "Reverse Engineering & Modernization",
-      description: "Modernize legacy systems or recreate existing solutions with improved functionality and performance.",
-      features: ["Legacy Modernization", "Code Analysis", "System Recreation", "Performance Enhancement"],
+      title: "Legacy System Modernization",
+      description: "Modernize legacy systems or recreate existing solutions with improved functionality, security, and performance.",
+      features: ["Legacy Modernization", "Code Analysis", "System Recreation", "Cloud Migration"],
       color: "bg-indigo-100 text-indigo-600",
       industries: ["Enterprise", "Government", "Healthcare"]
     },

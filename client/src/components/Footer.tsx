@@ -36,8 +36,10 @@ export default function Footer() {
 
   const services = [
     "Custom Software Development",
-    "Business Analysis",
-    "Reverse Engineering",
+    "WhatsApp Business Integration",
+    "Sales Management Software",
+    "Overtime Management Software",
+    "System Design & Consulting",
     "Legacy Modernization",
   ];
 
@@ -59,6 +61,11 @@ export default function Footer() {
             <p className="text-gray-300 mb-6 max-w-md">
               Engineering custom software solutions that embody the great spirit of innovation for modern business needs.
             </p>
+            <div className="mb-6">
+              <p className="text-gray-300 mb-2">Email: smarshall@kitjistudios.com</p>
+              <p className="text-gray-300">Based in Barbados, serving clients worldwide</p>
+              <p className="text-gray-300 text-sm mt-2">Official WhatsApp Business Service Provider</p>
+            </div>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;

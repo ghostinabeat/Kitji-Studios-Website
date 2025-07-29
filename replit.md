@@ -37,6 +37,17 @@ Preferred communication style: Simple, everyday language.
 - Positioned services as enterprise solutions for banking, insurance, and government sectors
 - Created clear lead generation paths with multiple CTAs guiding users to contact form
 
+### Contact Information & Service Expansion Updates
+- Updated contact email to smarshall@kitjistudios.com (primary team lead contact)
+- Added official WhatsApp Business Service Provider certification
+- Expanded services to include consultation for system design and workflow optimization
+- Added new cloud-based products:
+  - WhatsApp Business Integration (official BSP)
+  - Sales Management Software (cloud-based CRM)
+  - Overtime Management Software (smart time tracking)
+- Enhanced all product descriptions with cloud benefits and marketing advantages
+- Updated project type selections in contact forms to include new service offerings
+
 ## System Architecture
 
 The application follows a monorepo structure with clear separation between client-side and server-side code:

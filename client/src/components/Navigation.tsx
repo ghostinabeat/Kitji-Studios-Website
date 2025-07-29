@@ -43,6 +43,7 @@ export default function Navigation() {
   const navLinks = [
     { href: "/about", label: "About", isRoute: true },
     { href: "services", label: "Services" },
+    { href: "cloud-products", label: "Products" },
     { href: "team", label: "Team" },
     { href: "work", label: "Work" },
   ];
