@@ -1,6 +1,7 @@
-import { Bug, Linkedin, Github, Twitter } from "lucide-react";
+import { Linkedin, Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   const [location, setLocation] = useLocation();
@@ -52,11 +53,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-                <Bug className="text-white w-5 h-5" />
-              </div>
-              <span className="text-xl font-bold">Kitji Studios</span>
+            <div className="mb-6">
+              <Logo className="w-12 h-12" textClassName="text-xl font-bold text-white" />
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Engineering custom software solutions that embody the great spirit of innovation for modern business needs.

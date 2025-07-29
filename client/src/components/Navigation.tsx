@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Bug } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useLocation } from "wouter";
+import Logo from "@/components/Logo";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,13 +55,16 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div 
-            className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => scrollToSection("home")}
+            className="cursor-pointer"
+            onClick={() => {
+              if (location !== "/") {
+                setLocation("/");
+              } else {
+                scrollToSection("home");
+              }
+            }}
           >
-            <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-              <Bug className="text-white w-5 h-5" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">Kitji Studios</span>
+            <Logo />
           </div>
 
           {/* Desktop Navigation */}

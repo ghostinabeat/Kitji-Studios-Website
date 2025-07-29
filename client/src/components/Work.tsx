@@ -1,34 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Rocket } from "lucide-react";
-import { SiDotnet, SiPhp, SiPython } from "react-icons/si";
+import { ArrowRight, Building, Star, Quote } from "lucide-react";
 
 export default function Work() {
-  const projects = [
-    {
-      icon: SiDotnet,
-      title: "Enterprise .NET Solutions",
-      description: "Robust, scalable applications built with ASP.NET framework for enterprise-level requirements.",
-      technologies: ["ASP.NET", "C#", "SQL Server"],
-      color: "text-blue-600 bg-blue-100"
-    },
-    {
-      icon: SiPhp,
-      title: "Dynamic Web Applications",
-      description: "Custom web solutions using PHP and modern frameworks for dynamic, data-driven applications.",
-      technologies: ["PHP", "Laravel", "MySQL"],
-      color: "text-indigo-600 bg-indigo-100"
-    },
-    {
-      icon: SiPython,
-      title: "Data Analytics & Automation",
-      description: "Python-powered solutions for data analysis, machine learning, and business process automation.",
-      technologies: ["Python", "Data Science", "Automation"],
-      color: "text-green-600 bg-green-100"
-    }
-  ];
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -36,53 +11,160 @@ export default function Work() {
     }
   };
 
+  const testimonials = [
+    {
+      name: "Warren Kellman",
+      title: "Founder, Nickel & Dime Ltd",
+      company: "Financial Services",
+      image: "/api/placeholder/80/80",
+      quote: "Kitji Studios delivered outstanding custom software development services, taking the time to understand unique business needs and exceeding expectations with a professional, knowledgeable, and responsive approach.",
+      project: "Peer-to-Peer Lending Platform",
+      industry: "Fintech"
+    },
+    {
+      name: "Claire Odle",
+      title: "General Manager",
+      company: "Banking Sector",
+      image: "/api/placeholder/80/80",
+      quote: "I had the opportunity to see the impact of Kitji's work through a banking project they contributed to, and their expertise was evident. The final product was efficient and clearly well-engineered.",
+      project: "Banking Integration System",
+      industry: "Banking"
+    },
+    {
+      name: "Troy Reid",
+      title: "CEO & Founder",
+      company: "TRSol",
+      image: "/api/placeholder/80/80",
+      quote: "Our experience with Kitji has been extremely phenomenal. Proceeding to have a website built seemed overwhelming initially, but the patience and clarity of everything was top tier.",
+      project: "Corporate Website Development",
+      industry: "Technology"
+    }
+  ];
+
+  const caseStudies = [
+    {
+      title: "Nickel & Dime P2P Lending Platform",
+      description: "Revolutionary peer-to-peer lending platform with seamless integration to Barbados financial systems",
+      industry: "Fintech",
+      technologies: ["Web3", "Smart Contracts", "Payment Integration", "Real-time Processing"],
+      results: ["100% Uptime", "Seamless Integration", "Scalable Architecture"]
+    },
+    {
+      title: "Real-Time Payment System Integration",
+      description: "Mission-critical RTP system implementation for banking infrastructure in Barbados",
+      industry: "Banking",
+      technologies: ["RTP Systems", "API Integration", "Security Protocols", "Data Management"],
+      results: ["Enterprise Security", "Real-time Processing", "Regulatory Compliance"]
+    },
+    {
+      title: "Government Electoral API",
+      description: "Specialized API system for Barbadian Citizens electoral data management",
+      industry: "Government",
+      technologies: ["RESTful APIs", "Data Security", "IAAM Framework", "Documentation"],
+      results: ["Secure Access", "Comprehensive Coverage", "Government Approved"]
+    }
+  ];
+
   return (
     <section id="work" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Work</h2>
-          <p className="text-xl text-gray-600">Excellence under the hood - technologies and solutions we deliver</p>
+          <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
+            Success Stories
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Proven Results Across Industries</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Real projects, real results. See how we've helped businesses transform their operations 
+            with custom software solutions.
+          </p>
         </div>
 
-        {/* Featured Projects/Technologies */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => {
-            const Icon = project.icon;
-            return (
-              <Card key={index} className="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow group border-0">
-                <CardContent className="p-0">
-                  <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform ${project.color}`}>
-                    <Icon className="text-2xl" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className={project.color}>
+        {/* Case Studies */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {caseStudies.map((study, index) => (
+            <Card key={index} className="bg-white shadow-lg border-0 h-full">
+              <CardContent className="p-6 h-full flex flex-col">
+                <div className="mb-4">
+                  <Badge variant="outline" className="mb-3">{study.industry}</Badge>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{study.title}</h3>
+                  <p className="text-gray-600 text-sm">{study.description}</p>
+                </div>
+                
+                <div className="mb-4 flex-grow">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Technologies Used:</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {study.technologies.map((tech, techIndex) => (
+                      <Badge key={techIndex} variant="secondary" className="text-xs">
                         {tech}
                       </Badge>
                     ))}
                   </div>
-                  <Button variant="link" className="text-primary hover:text-primary/80 p-0">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                </div>
+                
+                <div className="mt-auto">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Results:</h4>
+                  <ul className="space-y-1">
+                    {study.results.map((result, resultIndex) => (
+                      <li key={resultIndex} className="flex items-center text-xs text-gray-600">
+                        <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Start Your Project?</h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">Let's discuss how we can engineer the perfect software solution for your business needs.</p>
+        {/* Testimonials */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">What Our Clients Say</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-white shadow-lg border-0">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <Quote className="w-8 h-8 text-primary/20 mr-2" />
+                    <div className="flex text-primary">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4 italic">"{testimonial.quote}"</p>
+                  
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                      <Building className="w-6 h-6 text-gray-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                      <div className="text-sm text-gray-600">{testimonial.title}</div>
+                      <div className="text-xs text-primary">{testimonial.project}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center bg-white rounded-2xl shadow-lg p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Join Our Success Stories?</h3>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Let's discuss how we can build a custom solution that transforms your business operations 
+            and delivers measurable results.
+          </p>
           <Button 
             size="lg" 
             className="gradient-bg hover:opacity-90 text-white text-lg px-8 py-6"
             onClick={() => scrollToSection("contact")}
           >
-            Start Your Project
-            <Rocket className="ml-2 h-5 w-5" />
+            Start Your Project Today
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </div>

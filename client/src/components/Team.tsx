@@ -1,66 +1,115 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Award, Users } from "lucide-react";
 
 export default function Team() {
-  const teamMembers = [
-    {
-      name: "Shayne Marshall",
-      role: "Software Engineer / Developer",
-      title: "Director / Founder Kitji Studios",
-      description: "Passionate about software development and technology. Love to learn and create innovative solutions that make a difference.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
-    },
-    {
-      name: "Frederick Chandler Masterton",
-      role: "Software Engineer / Developer",
-      title: "Director Kitji Studios",
-      description: "Skilled developer with expertise in multiple platforms. Apple enthusiast and advocate for clean, efficient code architecture.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
-    }
+  const teamStats = [
+    { icon: Users, number: "10+", label: "Years Combined Experience" },
+    { icon: Award, number: "50+", label: "Projects Delivered" },
+    { icon: MapPin, number: "3", label: "Continents Served" }
+  ];
+
+  const expertise = [
+    "Enterprise Architecture",
+    "Banking & Payment Systems", 
+    "Government Solutions",
+    "Web3 & Blockchain",
+    "Business Intelligence",
+    "System Integration",
+    "Legacy Modernization",
+    "API Development"
   ];
 
   return (
     <section id="team" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">The Team</h2>
-          <p className="text-xl text-gray-600">Meet the minds behind Kitji Studios</p>
+          <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
+            Our Team
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Industry Nomads with Global Experience</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our team brings extensive expertise across multiple industries, specializing in enterprise solutions 
+            for banking, insurance, government, and beyond.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {teamMembers.map((member, index) => (
-            <Card key={index} className="bg-white p-8 shadow-lg hover:shadow-xl transition-shadow group border-0">
-              <CardContent className="p-0 text-center">
-                <img 
-                  src={member.image} 
-                  alt={`${member.name} - ${member.role}`}
-                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-gray-100 group-hover:border-primary transition-colors"
-                />
-                
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-primary font-semibold mb-1">{member.role}</p>
-                <p className="text-gray-600 mb-4">{member.title}</p>
-                <p className="text-gray-700 mb-6">{member.description}</p>
-                
-                <div className="flex justify-center space-x-4 mb-6">
-                  <Button variant="ghost" size="icon" className="bg-gray-100 hover:bg-primary hover:text-white rounded-lg">
-                    <Linkedin className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="bg-gray-100 hover:bg-primary hover:text-white rounded-lg">
-                    <Github className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="bg-gray-100 hover:bg-primary hover:text-white rounded-lg">
-                    <Mail className="h-4 w-4" />
-                  </Button>
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {teamStats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <Card key={index} className="text-center p-8 bg-gray-50 border-0 hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                  <div className="text-gray-600">{stat.label}</div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Expertise Areas */}
+        <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 lg:p-12">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Core Expertise Areas</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Industry Experience</h4>
+                <p className="text-gray-600 mb-4">
+                  Our team boasts extensive expertise across a spectrum of industries, including Insurance, 
+                  Banking, Multimedia, Finance, Payroll Management, Logistics Management, and Elections.
+                </p>
+                <p className="text-gray-600">
+                  With a global presence, we serve both Government and Commercial sectors, making us 
+                  versatile Industry Nomads capable of adapting to any business environment.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Technical Specializations</h4>
+                <div className="grid grid-cols-2 gap-3">
+                  {expertise.map((skill, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-gray-700">{skill}</span>
+                    </div>
+                  ))}
                 </div>
-                
-                <Button className="w-full bg-gray-100 hover:bg-primary hover:text-white text-gray-700 border-0">
-                  <Mail className="mr-2 h-4 w-4" /> Contact
-                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Key Insights */}
+        <div className="mt-16 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="bg-white shadow-lg border-0 p-6">
+              <CardContent className="p-0">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Payment Systems Integration</h4>
+                <p className="text-gray-600">
+                  We possess valuable insights into banking and payment infrastructure systems. 
+                  Our team has intimate knowledge of Real-Time Payment (RTP) systems and played 
+                  an integral role in implementing these integrations in Barbados.
+                </p>
               </CardContent>
             </Card>
-          ))}
+            
+            <Card className="bg-white shadow-lg border-0 p-6">
+              <CardContent className="p-0">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Data-Driven Decision Making</h4>
+                <p className="text-gray-600">
+                  We believe in data-driven decision making. Our experts build and leverage BI tools 
+                  to provide valuable insights that inform strategic decisions, improve operations, 
+                  and drive business growth.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
