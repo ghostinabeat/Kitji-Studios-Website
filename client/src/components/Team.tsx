@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Award, Users, User, Code2, Database } from "lucide-react";
+import { MapPin, Award, Users, User, Code2, Database, TrendingUp } from "lucide-react";
 
 export default function Team() {
   const teamStats = [
@@ -12,16 +12,42 @@ export default function Team() {
   const leadership = [
     {
       name: "Shayne Marshall",
-      role: "Team Lead & Senior Developer",
+      role: "Managing Director",
       email: "smarshall@kitjistudios.com",
       icon: User,
       specializations: [
-        "Project Leadership",
+        "Strategic Leadership",
         "Banking & Payment Systems",
         "Real-Time Payment (RTP) Integration",
-        "Full-Stack Development"
+        "Business Development"
       ],
-      description: "Led the development of the Nickel & Dime peer-to-peer lending platform and specializes in financial systems integration, particularly Real-Time Payment systems in Barbados."
+      description: "Managing Director overseeing all operations and strategic initiatives. Led the development of the Nickel & Dime peer-to-peer lending platform and specializes in financial systems integration, particularly Real-Time Payment systems in Barbados."
+    },
+    {
+      name: "Brendan Inniss",
+      role: "Architecture and Design Director", 
+      email: "binniss@kitjistudios.com",
+      icon: Code2,
+      specializations: [
+        "System Architecture",
+        "Enterprise Design",
+        "Technical Leadership",
+        "Solution Design"
+      ],
+      description: "Architecture and Design Director responsible for technical architecture decisions and system design across all enterprise solutions and platforms."
+    },
+    {
+      name: "Oneka John",
+      role: "Sales Lead",
+      email: "ojohn@kitjistudios.com", 
+      icon: TrendingUp,
+      specializations: [
+        "Client Relations",
+        "Business Development",
+        "Sales Strategy",
+        "Market Analysis"
+      ],
+      description: "Sales Lead driving business growth through strategic client relationships and market expansion initiatives across banking, insurance, and government sectors."
     }
   ];
 

@@ -9,10 +9,12 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes (July 29, 2025)
 
 ### Team Page Enhancement 
-- Updated Team page to accurately reflect Kitji Studios' actual leadership structure
-- Added Shayne Marshall as Team Lead with authentic specializations in payment systems and RTP integration
-- Included proper contact information (smarshall@kitjistudios.com) matching actual business contacts
-- Enhanced team component with leadership section featuring real project experience and specializations
+- Updated Team page to accurately reflect Kitji Studios' actual leadership structure with real team members:
+  - **Shayne Marshall** - Managing Director (smarshall@kitjistudios.com)
+  - **Brendan Inniss** - Architecture and Design Director (binniss@kitjistudios.com)
+  - **Oneka John** - Sales Lead (ojohn@kitjistudios.com)
+- Added authentic specializations and roles based on actual company structure
+- Enhanced team component with comprehensive leadership profiles and contact information
 - Fixed navigation routing to properly link to dedicated /team page
 
 ### Product Portfolio Correction
