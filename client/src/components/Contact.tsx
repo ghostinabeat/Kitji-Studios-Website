@@ -59,16 +59,16 @@ export default function Contact() {
 
   const projectTypes = [
     "Custom Software Development",
+    "Utell - Web3 Trust Platform",
+    "Pelas - Resource Management System",
     "WhatsApp Business Integration",
-    "Sales Management Software",
-    "Overtime Management Software",
     "System Design & Workflow Optimization",
     "Legacy System Modernization",
     "Business Intelligence & Analytics",
     "Web3/Blockchain Solution",
     "API Development",
     "System Integration",
-    "Consulting Services",
+    "Management Consulting",
     "Other"
   ];
 

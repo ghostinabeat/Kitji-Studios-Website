@@ -29,20 +29,22 @@ export default function HeroClean() {
 
   const keyProducts = [
     {
-      icon: MessageSquare,
-      title: "WhatsApp Business Integration",
-      subtitle: "Official BSP Certified",
-      description: "Complete automation and customer engagement platform"
+      icon: Globe,
+      title: "Utell",
+      subtitle: "Web3 Trust Platform",
+      description: "Decentralized platform for secure data transactions with smart contracts"
     },
     {
       icon: BarChart4,
-      title: "Sales Management Software",
-      description: "Cloud-based CRM with pipeline management and analytics"
+      title: "Pelas",
+      subtitle: "Electronic Ledger System",
+      description: "Intelligent resource management integrating HR, finance, and time tracking"
     },
     {
-      icon: Clock,
-      title: "Overtime Management",
-      description: "Smart time tracking with payroll integration"
+      icon: MessageSquare,
+      title: "WhatsApp Business Integration",
+      subtitle: "Official BSP Certified",
+      description: "Complete automation and customer engagement solutions"
     }
   ];
 

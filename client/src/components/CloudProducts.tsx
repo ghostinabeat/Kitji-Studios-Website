@@ -25,70 +25,76 @@ export default function CloudProducts() {
 
   const cloudProducts = [
     {
+      icon: Globe,
+      title: "Utell",
+      subtitle: "Web3 Decentralized Trust Platform",
+      description: "A game-changing Web3 platform designed for secure data transactions with powerful identity and access management capabilities.",
+      features: [
+        "Web3 decentralized architecture",
+        "Powerful IAAM (Identity and Access Management)",
+        "Single Source of Truth (SSOT) data platform",
+        "Smart contract automation",
+        "Peer-to-peer (P2P) transactions",
+        "Business-to-consumer (B2C) transactions",
+        "Verifiable, immutable identity handling",
+        "Mobile-first responsive design"
+      ],
+      benefits: [
+        "Secure, trustworthy data transactions",
+        "Automated smart contract execution",
+        "Immutable identity verification",
+        "Seamless P2P and B2C exchanges"
+      ],
+      color: "from-blue-600 to-cyan-600",
+      pricing: "Contact for Enterprise Pricing"
+    },
+    {
+      icon: BarChart4,
+      title: "Pelas",
+      subtitle: "Personalized Electronic Ledger Accounting System",
+      description: "A next-generation Web3 mobile-first SaaS platform for intelligent resource management, integrating HR, finance, and time tracking.",
+      features: [
+        "Web3-designed architecture",
+        "Powerful IAAM (Identity and Access Management)",
+        "Human resources management",
+        "Financial management integration",
+        "Time tracking and automation",
+        "Real-time insights and analytics",
+        "Paperless, secure authentication",
+        "Seamless ecosystem integration"
+      ],
+      benefits: [
+        "Streamlined resource management",
+        "Real-time automation and insights",
+        "Scalable cloud computing",
+        "High-performance reliability"
+      ],
+      color: "from-emerald-600 to-teal-600",
+      pricing: "Contact for Enterprise Pricing"
+    },
+    {
       icon: MessageSquare,
       title: "WhatsApp Business Integration",
-      subtitle: "Official WhatsApp Service Provider",
-      description: "Complete WhatsApp Business API integration with advanced automation, customer support, and marketing capabilities.",
+      subtitle: "Official BSP Certified Solutions",
+      description: "Complete WhatsApp Business API integration services with advanced automation, customer support, and marketing capabilities.",
       features: [
         "Official WhatsApp BSP certification",
-        "Automated customer support chatbots",
-        "Bulk messaging and campaigns",
-        "CRM and e-commerce integration",
-        "Multi-agent support dashboard",
-        "Advanced analytics and reporting"
+        "Custom automation development",
+        "Multi-agent support dashboards",
+        "CRM and system integration",
+        "Bulk messaging campaigns",
+        "Advanced analytics and reporting",
+        "Compliance with WhatsApp policies",
+        "24/7 technical support"
       ],
       benefits: [
         "24/7 customer engagement",
         "90% reduction in response time",
         "Seamless omnichannel experience",
-        "Compliance with WhatsApp policies"
+        "Enterprise-grade reliability"
       ],
       color: "from-green-600 to-emerald-600",
-      pricing: "Starting from $299/month"
-    },
-    {
-      icon: BarChart4,
-      title: "Sales Management Software",
-      subtitle: "Cloud-Based CRM Solution",
-      description: "Comprehensive cloud-based sales management platform designed to streamline your sales processes and boost revenue.",
-      features: [
-        "Lead management and tracking",
-        "Pipeline visualization and forecasting",
-        "Customer relationship management",
-        "Sales team performance analytics",
-        "Integration with email and calendar",
-        "Mobile-first responsive design"
-      ],
-      benefits: [
-        "30% increase in sales productivity",
-        "Real-time sales insights",
-        "Automated follow-up sequences",
-        "Seamless team collaboration"
-      ],
-      color: "from-blue-600 to-indigo-600",
-      pricing: "Starting from $49/user/month"
-    },
-    {
-      icon: Clock,
-      title: "Overtime Management Software",
-      subtitle: "Smart Time Tracking Solution",
-      description: "Advanced cloud-based overtime management system with intelligent time tracking, compliance monitoring, and automated payroll integration.",
-      features: [
-        "Intelligent time tracking and clocking",
-        "Overtime calculation and approval workflows",
-        "Compliance with labor regulations",
-        "Payroll system integration",
-        "Employee self-service portal",
-        "Manager dashboard and reporting"
-      ],
-      benefits: [
-        "95% reduction in payroll errors",
-        "Automated compliance reporting",
-        "Improved employee satisfaction",
-        "Streamlined HR processes"
-      ],
-      color: "from-purple-600 to-pink-600",
-      pricing: "Starting from $29/employee/month"
+      pricing: "Contact for Custom Integration"
     }
   ];
 

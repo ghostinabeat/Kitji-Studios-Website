@@ -41,12 +41,12 @@ Preferred communication style: Simple, everyday language.
 - Updated contact email to smarshall@kitjistudios.com (primary team lead contact)
 - Added official WhatsApp Business Service Provider certification
 - Expanded services to include consultation for system design and workflow optimization
-- Added new cloud-based products:
-  - WhatsApp Business Integration (official BSP)
-  - Sales Management Software (cloud-based CRM)
-  - Overtime Management Software (smart time tracking)
-- Enhanced all product descriptions with cloud benefits and marketing advantages
-- Updated project type selections in contact forms to include new service offerings
+- Corrected product listings to accurately represent Kitji Studios' actual flagship products:
+  - **Utell** - Web3 decentralized trust platform for secure data transactions with IAAM
+  - **Pelas** - Personalized Electronic Ledger Accounting System for resource management
+  - WhatsApp Business Integration services (official BSP certification)
+- All product descriptions based on accurate information from kitjistudios.com
+- Updated project type selections in contact forms to include actual service offerings
 
 ### Complete Page Separation Architecture (January 2025)
 - Completely restructured from single-page to multi-page application

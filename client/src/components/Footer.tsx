@@ -37,11 +37,11 @@ export default function Footer() {
 
   const services = [
     "Custom Software Development",
+    "Utell - Web3 Trust Platform",
+    "Pelas - Resource Management",
     "WhatsApp Business Integration",
-    "Sales Management Software",
-    "Overtime Management Software",
     "System Design & Consulting",
-    "Legacy Modernization",
+    "Business Intelligence & Analytics",
   ];
 
   const socialLinks = [
