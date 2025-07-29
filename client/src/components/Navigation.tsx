@@ -80,7 +80,14 @@ export default function Navigation() {
               </button>
             ))}
             <Button 
-              onClick={() => scrollToSection("contact")}
+              onClick={() => {
+                if (location !== "/") {
+                  setLocation("/");
+                  setTimeout(() => scrollToSection("contact"), 100);
+                } else {
+                  scrollToSection("contact");
+                }
+              }}
               className="gradient-bg hover:opacity-90 text-white"
             >
               Contact
@@ -106,7 +113,15 @@ export default function Navigation() {
                   </button>
                 ))}
                 <Button 
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => {
+                    if (location !== "/") {
+                      setLocation("/");
+                      setTimeout(() => scrollToSection("contact"), 100);
+                    } else {
+                      scrollToSection("contact");
+                    }
+                    setIsMobileMenuOpen(false);
+                  }}
                   className="gradient-bg hover:opacity-90 text-white mt-4"
                 >
                   Contact
