@@ -8,6 +8,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (July 29, 2025)
 
+### Team Page Enhancement 
+- Updated Team page to accurately reflect Kitji Studios' actual leadership structure
+- Added Shayne Marshall as Team Lead with authentic specializations in payment systems and RTP integration
+- Included proper contact information (smarshall@kitjistudios.com) matching actual business contacts
+- Enhanced team component with leadership section featuring real project experience and specializations
+- Fixed navigation routing to properly link to dedicated /team page
+
+### Product Portfolio Correction
+- Corrected product listings to showcase actual Kitji Studios flagship products:
+  - **Utell** - Web3 decentralized trust platform with IAAM and smart contract capabilities
+  - **Pelas** - Personalized Electronic Ledger Accounting System for resource management
+  - **Sales Management Software** - Cloud-based CRM solution (retained as requested)
+  - **WhatsApp Business Integration** - Official BSP certified services
+- All product descriptions now based on authentic information from kitjistudios.com
+
 ### Logo and Brand Identity
 - Redesigned logo with animated spider web pattern representing Anansi spirit and network connectivity
 - Created professional SVG logo with gradient background and tech-inspired animations

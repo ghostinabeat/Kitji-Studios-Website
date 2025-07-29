@@ -1,12 +1,28 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Award, Users } from "lucide-react";
+import { MapPin, Award, Users, User, Code2, Database } from "lucide-react";
 
 export default function Team() {
   const teamStats = [
     { icon: Users, number: "10+", label: "Years Combined Experience" },
     { icon: Award, number: "50+", label: "Projects Delivered" },
     { icon: MapPin, number: "3", label: "Continents Served" }
+  ];
+
+  const leadership = [
+    {
+      name: "Shayne Marshall",
+      role: "Team Lead & Senior Developer",
+      email: "smarshall@kitjistudios.com",
+      icon: User,
+      specializations: [
+        "Project Leadership",
+        "Banking & Payment Systems",
+        "Real-Time Payment (RTP) Integration",
+        "Full-Stack Development"
+      ],
+      description: "Led the development of the Nickel & Dime peer-to-peer lending platform and specializes in financial systems integration, particularly Real-Time Payment systems in Barbados."
+    }
   ];
 
   const expertise = [
@@ -82,6 +98,45 @@ export default function Team() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Leadership */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Leadership</h3>
+          <div className="max-w-4xl mx-auto">
+            {leadership.map((leader, index) => {
+              const Icon = leader.icon;
+              return (
+                <Card key={index} className="bg-white shadow-lg border-0 p-8 mb-8">
+                  <CardContent className="p-0">
+                    <div className="flex flex-col md:flex-row items-start gap-6">
+                      <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-10 h-10 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">{leader.name}</h4>
+                        <p className="text-primary font-medium mb-2">{leader.role}</p>
+                        <p className="text-gray-600 text-sm mb-4">
+                          <a href={`mailto:${leader.email}`} className="text-primary hover:underline">
+                            {leader.email}
+                          </a>
+                        </p>
+                        <p className="text-gray-600 mb-4">{leader.description}</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {leader.specializations.map((spec, specIndex) => (
+                            <div key={specIndex} className="flex items-center space-x-2">
+                              <div className="w-2 h-2 bg-primary rounded-full"></div>
+                              <span className="text-sm text-gray-700">{spec}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
 
