@@ -1,0 +1,100 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, Bug } from "lucide-react";
+
+export default function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const navLinks = [
+    { href: "about", label: "About" },
+    { href: "services", label: "Services" },
+    { href: "team", label: "Team" },
+    { href: "work", label: "Work" },
+  ];
+
+  return (
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      isScrolled ? "bg-white/95 backdrop-blur-sm border-b" : "bg-white/80 backdrop-blur-sm"
+    }`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div 
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => scrollToSection("home")}
+          >
+            <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+              <Bug className="text-white w-5 h-5" />
+            </div>
+            <span className="text-xl font-bold text-gray-900">Kitji Studios</span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className="text-gray-600 hover:text-primary transition-colors font-medium"
+              >
+                {link.label}
+              </button>
+            ))}
+            <Button 
+              onClick={() => scrollToSection("contact")}
+              className="gradient-bg hover:opacity-90 text-white"
+            >
+              Contact
+            </Button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72">
+              <div className="flex flex-col space-y-4 mt-8">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-left py-2 text-gray-600 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+                <Button 
+                  onClick={() => scrollToSection("contact")}
+                  className="gradient-bg hover:opacity-90 text-white mt-4"
+                >
+                  Contact
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </nav>
+  );
+}
