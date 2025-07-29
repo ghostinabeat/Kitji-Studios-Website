@@ -44,8 +44,8 @@ export default function Navigation() {
     { href: "/about", label: "About", isRoute: true },
     { href: "/services", label: "Services", isRoute: true },
     { href: "/products", label: "Products", isRoute: true },
-    { href: "team", label: "Team" },
-    { href: "work", label: "Work" },
+    { href: "/team", label: "Team", isRoute: true },
+    { href: "/work", label: "Work", isRoute: true },
   ];
 
   return (

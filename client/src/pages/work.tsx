@@ -1,15 +1,13 @@
 import Navigation from "@/components/Navigation";
-import HeroClean from "@/components/HeroClean";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Work from "@/components/Work";
 
-export default function Home() {
+export default function WorkPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main>
-        <HeroClean />
-        <Contact />
+      <main className="pt-16">
+        <Work />
       </main>
       <Footer />
     </div>

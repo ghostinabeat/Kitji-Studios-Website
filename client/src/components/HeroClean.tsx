@@ -68,7 +68,7 @@ export default function HeroClean() {
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             We build custom software and provide ready-to-deploy cloud products for banking, insurance, and government sectors. 
-            From system design to implementation, we're your trusted technology partner.
+            From system design to implementation — we're your trusted technology partner.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
