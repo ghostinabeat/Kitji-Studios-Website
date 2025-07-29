@@ -1,8 +1,5 @@
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import CloudProducts from "@/components/CloudProducts";
-import Platforms from "@/components/Platforms";
+import HeroClean from "@/components/HeroClean";
 import Team from "@/components/Team";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
@@ -13,10 +10,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navigation />
       <main>
-        <Hero />
-        <Services />
-        <CloudProducts />
-        <Platforms />
+        <HeroClean />
         <Team />
         <Work />
         <Contact />

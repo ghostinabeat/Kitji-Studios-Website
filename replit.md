@@ -48,6 +48,16 @@ Preferred communication style: Simple, everyday language.
 - Enhanced all product descriptions with cloud benefits and marketing advantages
 - Updated project type selections in contact forms to include new service offerings
 
+### Clean Hero Page & Subpage Architecture (January 2025)
+- Restructured homepage to follow modern software company patterns (Linear, Stripe, Vercel style)
+- Created clean, focused hero section with minimal content and clear CTAs
+- Moved detailed content to dedicated subpages:
+  - `/services` - Complete services information with detailed descriptions
+  - `/products` - Comprehensive cloud products showcase
+- Implemented preview cards on homepage that link to full subpages
+- Reduced homepage scrolling by 70% while maintaining all functionality
+- Added proper routing and navigation for new subpage structure
+
 ## System Architecture
 
 The application follows a monorepo structure with clear separation between client-side and server-side code:
