@@ -6,6 +6,15 @@ This is a full-stack web application for Kitji Studios, a software development c
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (July 29, 2025)
+
+- Created separate About page (/about route) with company story and Kitji/Anansi meaning
+- Enhanced hero page with marketing-focused copy emphasizing cost savings and custom solutions
+- Added trust indicators and social proof elements to hero section
+- Improved navigation to support both routing and smooth scrolling between pages
+- Updated About section on home page to focus on value propositions and business benefits
+- Added routing functionality with wouter for multi-page navigation
+
 ## System Architecture
 
 The application follows a monorepo structure with clear separation between client-side and server-side code:

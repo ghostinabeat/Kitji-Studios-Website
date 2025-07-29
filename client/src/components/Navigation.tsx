@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Bug } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,8 +25,22 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = (link: any) => {
+    if (link.isRoute) {
+      setLocation(link.href);
+    } else {
+      if (location !== "/") {
+        setLocation("/");
+        setTimeout(() => scrollToSection(link.href), 100);
+      } else {
+        scrollToSection(link.href);
+      }
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   const navLinks = [
-    { href: "about", label: "About" },
+    { href: "/about", label: "About", isRoute: true },
     { href: "services", label: "Services" },
     { href: "team", label: "Team" },
     { href: "work", label: "Work" },
@@ -52,7 +68,7 @@ export default function Navigation() {
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link)}
                 className="text-gray-600 hover:text-primary transition-colors font-medium"
               >
                 {link.label}
@@ -78,7 +94,7 @@ export default function Navigation() {
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link)}
                     className="text-left py-2 text-gray-600 hover:text-primary transition-colors"
                   >
                     {link.label}

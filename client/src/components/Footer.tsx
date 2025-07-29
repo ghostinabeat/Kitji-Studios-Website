@@ -1,7 +1,10 @@
 import { Bug, Linkedin, Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 export default function Footer() {
+  const [location, setLocation] = useLocation();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -9,8 +12,21 @@ export default function Footer() {
     }
   };
 
+  const handleNavClick = (link: any) => {
+    if (link.isRoute) {
+      setLocation(link.href);
+    } else {
+      if (location !== "/") {
+        setLocation("/");
+        setTimeout(() => scrollToSection(link.href), 100);
+      } else {
+        scrollToSection(link.href);
+      }
+    }
+  };
+
   const quickLinks = [
-    { href: "about", label: "About" },
+    { href: "/about", label: "About", isRoute: true },
     { href: "services", label: "Services" },
     { href: "team", label: "Team" },
     { href: "work", label: "Work" },
@@ -70,7 +86,7 @@ export default function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link)}
                     className="text-gray-300 hover:text-white transition-colors text-left"
                   >
                     {link.label}
