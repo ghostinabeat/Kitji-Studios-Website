@@ -63,14 +63,14 @@ export default function Team() {
   ];
 
   return (
-    <section id="team" className="py-20 bg-white">
+    <section id="team" className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Our Team
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Industry Nomads with Global Experience</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Industry Nomads with Global Experience</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Our team brings extensive expertise across multiple industries, specializing in enterprise solutions 
             for banking, insurance, government, and beyond.
           </p>

@@ -81,14 +81,14 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Enterprise Solutions
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">What We Build For You</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">What We Build For You</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Comprehensive software solutions designed to solve real business problems and drive measurable results
           </p>
           

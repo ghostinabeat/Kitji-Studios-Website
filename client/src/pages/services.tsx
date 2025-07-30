@@ -4,7 +4,7 @@ import Services from "@/components/Services";
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark-theme-bg">
       <Navigation />
       <main className="pt-16">
         <Services />

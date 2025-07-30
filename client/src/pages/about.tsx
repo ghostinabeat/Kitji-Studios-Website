@@ -32,14 +32,14 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark-theme-bg">
       <Navigation />
       <main className="pt-16">
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-black/90">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">About Kitji Studios</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Key features of our company and the spirit behind our name</p>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">About Kitji Studios</h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">Key features of our company and the spirit behind our name</p>
             </div>
 
             {/* Services Grid */}

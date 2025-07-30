@@ -132,14 +132,14 @@ export default function CloudProducts() {
   ];
 
   return (
-    <section id="cloud-products" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="cloud-products" className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Cloud Products
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Ready-to-Deploy Cloud Solutions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready-to-Deploy Cloud Solutions</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Powerful cloud-based software products designed to accelerate your business growth with enterprise-grade features and reliability.
           </p>
         </div>
@@ -149,13 +149,13 @@ export default function CloudProducts() {
           {cloudBenefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <Card key={index} className="bg-white/80 backdrop-blur-sm border-0 text-center p-4 hover:shadow-lg transition-all">
+              <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 text-center p-4 hover:shadow-lg transition-all card-glow">
                 <CardContent className="p-0">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1">{benefit.title}</h4>
-                  <p className="text-xs text-gray-600">{benefit.description}</p>
+                  <h4 className="font-semibold text-white text-sm mb-1">{benefit.title}</h4>
+                  <p className="text-xs text-gray-300">{benefit.description}</p>
                 </CardContent>
               </Card>
             );
@@ -169,7 +169,7 @@ export default function CloudProducts() {
             const isEven = index % 2 === 0;
             
             return (
-              <Card key={index} className="bg-white shadow-2xl border-0 overflow-hidden">
+              <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden card-glow">
                 <div className={`grid grid-cols-1 ${isEven ? 'lg:grid-cols-2' : 'lg:grid-cols-2'} gap-0`}>
                   {/* Content */}
                   <div className={`p-8 lg:p-12 ${!isEven ? 'lg:order-2' : ''}`}>
@@ -178,7 +178,7 @@ export default function CloudProducts() {
                         <Icon className="w-7 h-7 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900">{product.title}</h3>
+                        <h3 className="text-2xl font-bold text-white">{product.title}</h3>
                         <p className="text-primary font-medium">{product.subtitle}</p>
                       </div>
                     </div>

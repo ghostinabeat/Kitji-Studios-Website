@@ -4,7 +4,7 @@ import Team from "@/components/Team";
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark-theme-bg">
       <Navigation />
       <main className="pt-16">
         <Team />
