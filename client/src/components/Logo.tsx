@@ -67,7 +67,7 @@ export default function Logo({ className = "w-10 h-10", textClassName = "text-xl
           </g>
         </svg>
       </div>
-      <span className={`text-gray-900 ${textClassName}`}>Kitji Studios</span>
+      <span className={`text-white ${textClassName}`}>Kitji Studios</span>
     </div>
   );
 }

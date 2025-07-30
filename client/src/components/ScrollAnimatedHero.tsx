@@ -75,44 +75,11 @@ export default function ScrollAnimatedHero() {
 
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
-      {/* Animated Background */}
+      {/* Hero Content Overlay */}
       <motion.div 
-        className="absolute inset-0 dark-theme-bg"
-        style={{ y: backgroundY, scale: heroScale }}
-      >
-        {/* Geometric Grid Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="hsl(207, 90%, 54%)" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-
-        {/* Animated Particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary rounded-full"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                x: [Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 800), Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 800)],
-                y: [Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600), Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600)],
-              }}
-              transition={{
-                duration: 10 + Math.random() * 10,
-                repeat: Infinity,
-                delay: Math.random() * 5,
-              }}
-            />
-          ))}
-        </div>
-      </motion.div>
+        className="absolute inset-0 bg-black/10"
+        style={{ opacity: overlayOpacity }}
+      />
 
       {/* Scroll Overlay */}
       <motion.div 
