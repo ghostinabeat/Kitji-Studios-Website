@@ -49,9 +49,9 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Contact section fade-out only when bottom of section reaches near top (like hero section)
-  // Hero fades from scroll 0-800, contact should fade much later when user has scrolled through entire section
-  const contactFadeOut = useTransform(scrollY, [1600, 2000], [1, 0]);
+  // Contact section has much more content than hero, so fade should happen much later
+  // Hero section is shorter and fades 0-800px, contact section needs much more scroll distance
+  const contactFadeOut = useTransform(scrollY, [2400, 2800], [1, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -606,19 +606,19 @@ export default function Contact() {
             </Card>
 
             {/* Emergency Contact */}
-            <Card className="border-2 border-orange-200 bg-orange-50">
+            <Card className="border-2 border-primary/30 bg-primary/5 backdrop-blur-sm">
               <CardContent className="p-6">
-                <h4 className="font-bold text-gray-900 mb-2 flex items-center">
-                  <Clock className="w-5 h-5 text-orange-600 mr-2" />
+                <h4 className="font-bold text-white mb-2 flex items-center">
+                  <Clock className="w-5 h-5 text-primary mr-2" />
                   Need Urgent Support?
                 </h4>
-                <p className="text-gray-600 text-sm mb-3">
+                <p className="text-gray-300 text-sm mb-3">
                   For existing clients with critical issues, we offer 24/7 emergency support.
                 </p>
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="border-orange-300 text-orange-700 hover:bg-orange-100"
+                  className="border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50"
                   onClick={() => window.open('mailto:support@kitjistudios.com?subject=URGENT: Emergency Support Request&body=Please describe your emergency:', '_blank')}
                 >
                   Emergency Contact
