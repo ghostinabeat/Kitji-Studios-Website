@@ -49,9 +49,9 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Contact section has much more content than hero, so fade should happen much later
-  // Hero section is shorter and fades 0-800px, contact section needs much more scroll distance
-  const contactFadeOut = useTransform(scrollY, [2400, 2800], [1, 0]);
+  // Contact section should fade out as its bottom approaches the top, like hero section
+  // This creates the transition effect when scrolling toward the "Your Journey Starts Here" section
+  const contactFadeOut = useTransform(scrollY, [1800, 2200], [1, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),

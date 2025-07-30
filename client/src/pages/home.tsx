@@ -13,9 +13,9 @@ export default function Home() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   
-  // Next section fades in only when contact section starts fading out
-  const sectionOpacity = useTransform(scrollY, [2400, 2800], [0, 1]);
-  const sectionY = useTransform(scrollY, [2400, 2800], [50, 0]);
+  // "Your Journey Starts Here" section fades in as contact section fades out
+  const sectionOpacity = useTransform(scrollY, [1800, 2200], [0, 1]);
+  const sectionY = useTransform(scrollY, [1800, 2200], [50, 0]);
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Dark themed background that extends through entire page */}
