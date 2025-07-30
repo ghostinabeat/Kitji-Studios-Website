@@ -52,7 +52,7 @@ export default function Contact() {
       if (result.success) {
         toast({
           title: "Message Sent Successfully!",
-          description: "We'll get back to you within 24 hours to discuss your project. Your message has been forwarded to support@kitjistudios.com",
+          description: result.message || "We'll get back to you within 24 hours to discuss your project.",
         });
         form.reset();
       } else {

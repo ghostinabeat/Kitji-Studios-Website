@@ -3,18 +3,34 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
+import { sendContactEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
       const contactData = insertContactSubmissionSchema.parse(req.body);
+      
+      // Store in database
       const submission = await storage.createContactSubmission(contactData);
-      res.json({ 
-        success: true, 
-        message: "Thank you for your message! We'll get back to you soon.",
-        id: submission.id 
-      });
+      
+      // Send email notification
+      const emailSent = await sendContactEmail(contactData);
+      
+      if (emailSent) {
+        res.json({ 
+          success: true, 
+          message: "Thank you for your message! We've received it and will get back to you within 24 hours.",
+          id: submission.id 
+        });
+      } else {
+        // Email failed but form was saved
+        res.json({ 
+          success: true, 
+          message: "Thank you for your message! We've received it. If urgent, please contact support@kitjistudios.com directly.",
+          id: submission.id 
+        });
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ 
