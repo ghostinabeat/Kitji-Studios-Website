@@ -49,9 +49,9 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Additional fade effect for the bottom section
-  const bottomSectionOpacity = useTransform(scrollY, [800, 1200], [0, 1]);
-  const bottomSectionY = useTransform(scrollY, [800, 1200], [100, 0]);
+  // Additional fade effect for the bottom section - adjusted timing
+  const bottomSectionOpacity = useTransform(scrollY, [600, 1000], [0, 1]);
+  const bottomSectionY = useTransform(scrollY, [600, 1000], [100, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -628,85 +628,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <motion.div 
-          className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
-          style={{ 
-            opacity: bottomSectionOpacity,
-            y: bottomSectionY 
-          }}
-        >
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
-              Next Steps
-            </Badge>
-            <h3 className="text-3xl font-bold text-white mb-4">Your Journey Starts Here</h3>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Transform your business with enterprise-grade solutions designed for scale, security, and success.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h4 className="font-semibold text-white mb-2">How long does a typical project take?</h4>
-              <p className="text-gray-300 text-sm mb-4">
-                Project timelines vary based on complexity, but we deliver 30% faster than industry average. 
-                Simple APIs take 2-4 weeks, while enterprise solutions take 3-6 months.
-              </p>
-              
-              <h4 className="font-semibold text-white mb-2">Do you work with international clients?</h4>
-              <p className="text-gray-300 text-sm">
-                Yes! We serve clients globally with proven experience across banking, government, 
-                and enterprise sectors in multiple countries.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-white mb-2">What happens after I submit this form?</h4>
-              <p className="text-gray-300 text-sm mb-4">
-                Within 24 hours, you'll receive a response with next steps, including a free 
-                consultation call to discuss your project in detail.
-              </p>
-              
-              <h4 className="font-semibold text-white mb-2">Can you work with our existing systems?</h4>
-              <p className="text-gray-300 text-sm">
-                Absolutely. We specialize in system integration and have extensive experience 
-                working with legacy systems, APIs, and enterprise platforms.
-              </p>
-            </div>
-          </div>
 
-          {/* Call to Action */}
-          <div className="text-center pt-8 border-t border-white/10">
-            <h4 className="text-xl font-bold text-white mb-4">Ready to Build Something Amazing?</h4>
-            <p className="text-gray-300 mb-6">Join the growing list of enterprises that trust Kitji Studios for their critical software solutions.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-white px-8"
-                onClick={() => {
-                  const form = document.querySelector('form');
-                  if (form) {
-                    form.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                Start Your Project
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white/20 text-white hover:bg-white/10 px-8"
-                onClick={() => {
-                  window.open('mailto:support@kitjistudios.com?subject=Urgent Project Inquiry', '_blank');
-                }}
-              >
-                Emergency Contact
-              </Button>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.section>
   );
