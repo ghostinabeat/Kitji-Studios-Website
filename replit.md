@@ -68,7 +68,8 @@ Preferred communication style: Simple, everyday language.
 
 ### Email Integration (July 30, 2025)
 - Implemented Resend email service for contact form submissions
-- Contact forms now send emails directly to support@kitjistudios.com
+- "Start Your Project" forms now send emails directly to sales@kitjistudios.com
+- Emergency contact button sends urgent emails to support@kitjistudios.com
 - Added fallback database storage for all submissions
 - Created admin interface at `/admin/contacts` for viewing submissions
 - Enhanced error handling and user feedback for form submissions

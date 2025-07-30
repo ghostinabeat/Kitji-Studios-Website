@@ -29,13 +29,13 @@ export async function sendContactEmail(data: ContactFormData): Promise<boolean> 
       <p>${data.message.replace(/\n/g, '<br>')}</p>
       
       <hr>
-      <p><small>This message was sent from the Kitji Studios website contact form.</small></p>
+      <p><small>This project inquiry was sent from the Kitji Studios website "Start Your Project" form.</small></p>
     `;
 
     await resend.emails.send({
       from: 'website@kitjistudios.com',
-      to: 'support@kitjistudios.com',
-      subject: `New Contact Form: ${data.projectType} - ${data.name}`,
+      to: 'sales@kitjistudios.com',
+      subject: `New Project Inquiry: ${data.projectType} - ${data.name}`,
       html: emailContent,
       replyTo: data.email,
     });

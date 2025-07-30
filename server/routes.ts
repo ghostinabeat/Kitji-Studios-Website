@@ -20,14 +20,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (emailSent) {
         res.json({ 
           success: true, 
-          message: "Thank you for your message! We've received it and will get back to you within 24 hours.",
+          message: "Thank you for your project inquiry! Our sales team has received it and will contact you within 24 hours to discuss next steps.",
           id: submission.id 
         });
       } else {
         // Email failed but form was saved
         res.json({ 
           success: true, 
-          message: "Thank you for your message! We've received it. If urgent, please contact support@kitjistudios.com directly.",
+          message: "Thank you for your project inquiry! We've received it. For urgent matters, please contact sales@kitjistudios.com directly.",
           id: submission.id 
         });
       }
@@ -86,7 +86,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         </head>
         <body>
           <div class="container">
-            <h1>Contact Submissions for support@kitjistudios.com</h1>
+            <h1>Project Inquiries for sales@kitjistudios.com</h1>
       `;
       
       if (submissions.length === 0) {

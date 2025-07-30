@@ -62,7 +62,7 @@ export default function Contact() {
       console.error('Contact form error:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact us directly at support@kitjistudios.com",
+        description: "Failed to send message. Please try again or contact our sales team directly at sales@kitjistudios.com",
         variant: "destructive",
       });
     }
