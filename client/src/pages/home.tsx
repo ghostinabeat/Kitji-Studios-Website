@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import ScrollAnimatedHero from "@/components/ScrollAnimatedHero";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,12 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   const { scrollY } = useScroll();
-  const sectionOpacity = useTransform(scrollY, [800, 1200], [0, 1]);
-  const sectionY = useTransform(scrollY, [800, 1200], [100, 0]);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
+  
+  // Scroll-based opacity and position transforms
+  const sectionOpacity = useTransform(scrollY, [600, 1000], [0, 1]);
+  const sectionY = useTransform(scrollY, [600, 1000], [50, 0]);
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Dark themed background that extends through entire page */}
@@ -35,7 +39,11 @@ export default function Home() {
         <Contact />
         {/* Next Steps Section */}
         <motion.section 
+          ref={sectionRef}
           className="py-20 bg-black/90"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ 
             opacity: sectionOpacity,
             y: sectionY 
@@ -103,7 +111,7 @@ export default function Home() {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="border-white/20 text-white hover:bg-white/10 px-8"
+                    className="border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 px-8"
                     onClick={() => {
                       window.open('mailto:support@kitjistudios.com?subject=Urgent Project Inquiry', '_blank');
                     }}
