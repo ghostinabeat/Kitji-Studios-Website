@@ -218,23 +218,23 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Get Started
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Ready to Transform Your Business?</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Let's discuss your project and see how we can build a custom solution that drives real results for your business.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Form */}
-          <Card className="shadow-xl border-0">
+          <Card className="shadow-xl border-0 bg-white/5 backdrop-blur-sm card-glow">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Start Your Project</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Start Your Project</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -554,16 +554,16 @@ export default function Contact() {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <Card key={index} className="bg-gray-50 border-0">
+                  <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-3">
                         <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                           <Icon className="w-5 h-5 text-primary" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
+                          <h4 className="font-semibold text-white mb-1">{info.title}</h4>
                           <p className="text-primary font-medium text-sm mb-1">{info.details}</p>
-                          <p className="text-gray-600 text-xs">{info.description}</p>
+                          <p className="text-gray-300 text-xs">{info.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -611,33 +611,33 @@ export default function Contact() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h3>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+          <h3 className="text-2xl font-bold text-white text-center mb-8">Frequently Asked Questions</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">How long does a typical project take?</h4>
-              <p className="text-gray-600 text-sm mb-4">
+              <h4 className="font-semibold text-white mb-2">How long does a typical project take?</h4>
+              <p className="text-gray-300 text-sm mb-4">
                 Project timelines vary based on complexity, but we deliver 30% faster than industry average. 
                 Simple APIs take 2-4 weeks, while enterprise solutions take 3-6 months.
               </p>
               
-              <h4 className="font-semibold text-gray-900 mb-2">Do you work with international clients?</h4>
-              <p className="text-gray-600 text-sm">
+              <h4 className="font-semibold text-white mb-2">Do you work with international clients?</h4>
+              <p className="text-gray-300 text-sm">
                 Yes! We serve clients globally with proven experience across banking, government, 
                 and enterprise sectors in multiple countries.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">What happens after I submit this form?</h4>
-              <p className="text-gray-600 text-sm mb-4">
+              <h4 className="font-semibold text-white mb-2">What happens after I submit this form?</h4>
+              <p className="text-gray-300 text-sm mb-4">
                 Within 24 hours, you'll receive a response with next steps, including a free 
                 consultation call to discuss your project in detail.
               </p>
               
-              <h4 className="font-semibold text-gray-900 mb-2">Can you work with our existing systems?</h4>
-              <p className="text-gray-600 text-sm">
+              <h4 className="font-semibold text-white mb-2">Can you work with our existing systems?</h4>
+              <p className="text-gray-300 text-sm">
                 Absolutely. We specialize in system integration and have extensive experience 
                 working with legacy systems, APIs, and enterprise platforms.
               </p>

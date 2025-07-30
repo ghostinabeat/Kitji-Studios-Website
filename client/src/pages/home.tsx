@@ -1,14 +1,14 @@
 import Navigation from "@/components/Navigation";
-import HeroClean from "@/components/HeroClean";
+import ScrollAnimatedHero from "@/components/ScrollAnimatedHero";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark-theme-bg smooth-scroll">
       <Navigation />
       <main>
-        <HeroClean />
+        <ScrollAnimatedHero />
         <Contact />
       </main>
       <Footer />

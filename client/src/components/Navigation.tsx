@@ -50,7 +50,7 @@ export default function Navigation() {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/95 backdrop-blur-sm border-b" : "bg-white/80 backdrop-blur-sm"
+      isScrolled ? "bg-black/95 backdrop-blur-sm border-b border-white/10" : "bg-black/80 backdrop-blur-sm"
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -74,7 +74,7 @@ export default function Navigation() {
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link)}
-                className="text-gray-600 hover:text-primary transition-colors font-medium"
+                className="text-gray-300 hover:text-primary transition-colors font-medium"
               >
                 {link.label}
               </button>
@@ -97,17 +97,17 @@ export default function Navigation() {
           {/* Mobile Navigation */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="md:hidden text-gray-300 hover:text-primary">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
+            <SheetContent side="right" className="w-72 bg-black/95 border-white/10">
               <div className="flex flex-col space-y-4 mt-8">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
                     onClick={() => handleNavClick(link)}
-                    className="text-left py-2 text-gray-600 hover:text-primary transition-colors"
+                    className="text-left py-2 text-gray-300 hover:text-primary transition-colors"
                   >
                     {link.label}
                   </button>
