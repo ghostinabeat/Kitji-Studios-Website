@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Building, Star, Quote } from "lucide-react";
 import ProjectShowcase from "./ProjectShowcase";
+import TestimonialCarousel from "./TestimonialCarousel";
 
 export default function Work() {
   const scrollToSection = (sectionId: string) => {
@@ -71,7 +72,10 @@ export default function Work() {
       {/* Project Showcase Gallery */}
       <ProjectShowcase />
       
-      {/* Case Studies & Testimonials */}
+      {/* Dynamic Testimonial Carousel */}
+      <TestimonialCarousel />
+      
+      {/* Case Studies */}
       <section id="work" className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -121,40 +125,6 @@ export default function Work() {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Testimonials */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">What Our Clients Say</h3>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white shadow-lg border-0">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <Quote className="w-8 h-8 text-primary/20 mr-2" />
-                    <div className="flex text-primary">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-600 mb-4 italic">"{testimonial.quote}"</p>
-                  
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
-                      <Building className="w-6 h-6 text-gray-600" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.title}</div>
-                      <div className="text-xs text-primary">{testimonial.project}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
 
         {/* CTA */}
