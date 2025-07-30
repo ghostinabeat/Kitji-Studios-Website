@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
@@ -42,6 +42,12 @@ export default function Contact() {
   const { toast } = useToast();
   const [fieldValidation, setFieldValidation] = useState<Record<string, 'idle' | 'validating' | 'valid' | 'invalid'>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll-based animations for contact section
+  const { scrollY } = useScroll();
+  const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
+  const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -218,7 +224,15 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-black/90">
+    <motion.section 
+      ref={sectionRef}
+      id="contact" 
+      className="py-20 bg-black/90"
+      style={{ 
+        opacity: contactOpacity,
+        y: contactY 
+      }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
@@ -645,6 +659,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

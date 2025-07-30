@@ -10,23 +10,12 @@ export default function ScrollAnimatedHero() {
   
   const { scrollY } = useScroll();
   
-  // Comprehensive scroll-based transforms for office productivity flow
-  const backgroundY = useTransform(scrollY, [0, 2000], [0, 600]);
+  // Scroll-based transforms for hero section
+  const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
   const textY = useTransform(scrollY, [0, 1000], [0, 150]);
   const overlayOpacity = useTransform(scrollY, [0, 500], [0, 0.8]);
   const heroScale = useTransform(scrollY, [0, 500], [1, 1.1]);
   const heroOpacity = useTransform(scrollY, [0, 800], [1, 0]);
-  
-  // Office productivity scene transforms
-  const scene1Opacity = useTransform(scrollY, [0, 300, 600], [1, 1, 0]);
-  const scene2Opacity = useTransform(scrollY, [300, 600, 900], [0, 1, 0]);
-  const scene3Opacity = useTransform(scrollY, [600, 900, 1200], [0, 1, 0]);
-  const scene4Opacity = useTransform(scrollY, [900, 1200, 1500], [0, 1, 0]);
-  
-  // Silhouette and element positioning
-  const silhouetteX = useTransform(scrollY, [0, 1500], [0, -200]);
-  const silhouetteScale = useTransform(scrollY, [0, 800], [1, 0.8]);
-  const deskElementsY = useTransform(scrollY, [0, 600], [0, -100]);
 
   // Mouse tracking for subtle parallax effect
   useEffect(() => {
