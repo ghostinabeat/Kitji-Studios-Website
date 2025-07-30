@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Building, Star, Quote } from "lucide-react";
+import ProjectShowcase from "./ProjectShowcase";
 
 export default function Work() {
   const scrollToSection = (sectionId: string) => {
@@ -66,16 +67,21 @@ export default function Work() {
   ];
 
   return (
-    <section id="work" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      {/* Project Showcase Gallery */}
+      <ProjectShowcase />
+      
+      {/* Case Studies & Testimonials */}
+      <section id="work" className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
-            Success Stories
+            Case Studies
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Proven Results Across Industries</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Real Impact, Real Results</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real projects, real results. See how we've helped businesses transform their operations 
-            with custom software solutions.
+            Detailed case studies showcasing how we've delivered transformative solutions 
+            across banking, fintech, and government sectors.
           </p>
         </div>
 
@@ -169,5 +175,6 @@ export default function Work() {
         </div>
       </div>
     </section>
+    </>
   );
 }
