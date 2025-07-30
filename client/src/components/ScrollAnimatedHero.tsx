@@ -74,10 +74,10 @@ export default function ScrollAnimatedHero() {
   ];
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden" style={{ height: '200vh' }}>
+    <div ref={containerRef} className="relative min-h-screen overflow-hidden">
       {/* Animated Background */}
       <motion.div 
-        className="fixed inset-0 dark-theme-bg"
+        className="absolute inset-0 dark-theme-bg"
         style={{ y: backgroundY, scale: heroScale }}
       >
         {/* Geometric Grid Pattern */}
@@ -91,159 +91,28 @@ export default function ScrollAnimatedHero() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-      </motion.div>
 
-      {/* Office Productivity Flow Animation */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Scene 1: Person typing at desk silhouette */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ opacity: scene1Opacity, x: silhouetteX, scale: silhouetteScale }}
-        >
-          <svg viewBox="0 0 400 300" className="w-96 h-72 text-white/30">
-            {/* Desk */}
-            <rect x="50" y="200" width="300" height="80" rx="8" fill="currentColor" />
-            {/* Monitor */}
-            <rect x="120" y="120" width="160" height="100" rx="4" fill="currentColor" />
-            <rect x="125" y="125" width="150" height="85" rx="2" fill="hsl(207, 90%, 54%)" opacity="0.3" />
-            {/* Person silhouette */}
-            <ellipse cx="200" cy="180" rx="25" ry="20" fill="currentColor" />
-            <rect x="185" y="180" width="30" height="40" rx="15" fill="currentColor" />
-            <rect x="175" y="210" width="15" height="30" rx="7" fill="currentColor" />
-            <rect x="210" y="210" width="15" height="30" rx="7" fill="currentColor" />
-            {/* Typing hands */}
-            <motion.g
+        {/* Animated Particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary rounded-full"
+              initial={{ opacity: 0 }}
               animate={{
-                translateY: [0, -2, 0],
+                opacity: [0, 1, 0],
+                x: [Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 800), Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 800)],
+                y: [Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600), Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600)],
               }}
               transition={{
-                duration: 0.8,
+                duration: 10 + Math.random() * 10,
                 repeat: Infinity,
-                ease: "easeInOut"
+                delay: Math.random() * 5,
               }}
-            >
-              <circle cx="175" cy="220" r="8" fill="currentColor" />
-              <circle cx="225" cy="220" r="8" fill="currentColor" />
-            </motion.g>
-            {/* Keyboard */}
-            <rect x="140" y="230" width="120" height="20" rx="4" fill="currentColor" />
-          </svg>
-        </motion.div>
-
-        {/* Scene 2: Code/Development */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ opacity: scene2Opacity, y: deskElementsY }}
-        >
-          <svg viewBox="0 0 400 300" className="w-96 h-72 text-white/40">
-            {/* Code editor interface */}
-            <rect x="50" y="50" width="300" height="200" rx="8" fill="currentColor" />
-            <rect x="55" y="55" width="290" height="30" fill="hsl(207, 90%, 54%)" opacity="0.4" />
-            {/* Code lines with animation */}
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <motion.g key={i}>
-                <rect 
-                  x={70 + (i % 2) * 20} 
-                  y={100 + i * 20} 
-                  width={200 - i * 15} 
-                  height="4" 
-                  fill="hsl(207, 90%, 54%)" 
-                  opacity="0.6"
-                />
-                <motion.rect
-                  x={270 - i * 15}
-                  y={100 + i * 20}
-                  width="8"
-                  height="4"
-                  fill="hsl(207, 90%, 54%)"
-                  animate={{
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    delay: i * 0.2
-                  }}
-                />
-              </motion.g>
-            ))}
-          </svg>
-        </motion.div>
-
-        {/* Scene 3: Data/Analytics */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ opacity: scene3Opacity }}
-        >
-          <svg viewBox="0 0 400 300" className="w-96 h-72 text-white/40">
-            {/* Dashboard interface */}
-            <rect x="50" y="50" width="300" height="200" rx="8" fill="currentColor" />
-            {/* Charts and graphs */}
-            <rect x="70" y="80" width="100" height="60" fill="hsl(207, 90%, 54%)" opacity="0.3" />
-            <rect x="190" y="80" width="100" height="60" fill="hsl(207, 90%, 54%)" opacity="0.3" />
-            {/* Animated bars */}
-            {[0, 1, 2, 3, 4].map((i) => (
-              <motion.rect
-                key={i}
-                x={80 + i * 15}
-                y={120}
-                width="10"
-                height="0"
-                fill="hsl(207, 90%, 54%)"
-                animate={{
-                  height: [0, (i + 1) * 8, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.3
-                }}
-              />
-            ))}
-            {/* Pie chart simulation */}
-            <circle cx="240" cy="110" r="25" fill="none" stroke="hsl(207, 90%, 54%)" strokeWidth="8" opacity="0.6" />
-          </svg>
-        </motion.div>
-
-        {/* Scene 4: Team collaboration/Meeting */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ opacity: scene4Opacity }}
-        >
-          <svg viewBox="0 0 400 300" className="w-96 h-72 text-white/40">
-            {/* Meeting room table */}
-            <ellipse cx="200" cy="180" rx="120" ry="40" fill="currentColor" />
-            {/* People silhouettes around table */}
-            {[0, 1, 2, 3].map((i) => {
-              const angle = (i * 90) * (Math.PI / 180);
-              const x = 200 + Math.cos(angle) * 80;
-              const y = 160 + Math.sin(angle) * 30;
-              return (
-                <motion.g key={i}>
-                  <motion.circle 
-                    cx={x} 
-                    cy={y} 
-                    r="12" 
-                    fill="currentColor"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.5
-                    }}
-                  />
-                  <rect x={x - 8} y={y + 8} width="16" height="20" rx="8" fill="currentColor" />
-                </motion.g>
-              );
-            })}
-            {/* Presentation screen */}
-            <rect x="120" y="60" width="160" height="80" rx="4" fill="currentColor" />
-            <rect x="125" y="65" width="150" height="70" fill="hsl(207, 90%, 54%)" opacity="0.3" />
-          </svg>
-        </motion.div>
-      </div>
+            />
+          ))}
+        </div>
+      </motion.div>
 
       {/* Scroll Overlay */}
       <motion.div 
