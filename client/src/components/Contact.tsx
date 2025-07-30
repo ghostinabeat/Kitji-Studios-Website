@@ -5,28 +5,47 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle, Check, X, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().min(2, "Company name is required"),
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
+  email: z.string()
+    .email("Please enter a valid email address")
+    .min(5, "Email is too short")
+    .max(100, "Email is too long")
+    .refine((email) => email.includes('.'), "Email must contain a domain"),
+  company: z.string()
+    .min(2, "Company name must be at least 2 characters")
+    .max(100, "Company name is too long")
+    .refine((company) => company.trim().length > 0, "Company name cannot be empty"),
   projectType: z.string().min(1, "Please select a project type"),
   budget: z.string().min(1, "Please select a budget range"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message is too long (max 1000 characters)")
+    .refine((msg) => msg.trim().length >= 10, "Message must contain meaningful content"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   const { toast } = useToast();
+  const [fieldValidation, setFieldValidation] = useState<Record<string, 'idle' | 'validating' | 'valid' | 'invalid'>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    mode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -37,7 +56,39 @@ export default function Contact() {
     },
   });
 
+  // Real-time validation with debounce
+  const watchedFields = form.watch();
+  
+  useEffect(() => {
+    const timeouts: Record<string, NodeJS.Timeout> = {};
+    
+    Object.keys(watchedFields).forEach((fieldName) => {
+      const fieldValue = watchedFields[fieldName as keyof ContactFormData];
+      
+      if (fieldValue && fieldValue.length > 0) {
+        setFieldValidation(prev => ({ ...prev, [fieldName]: 'validating' }));
+        
+        timeouts[fieldName] = setTimeout(() => {
+          try {
+            const fieldSchema = contactSchema.shape[fieldName as keyof typeof contactSchema.shape];
+            fieldSchema.parse(fieldValue);
+            setFieldValidation(prev => ({ ...prev, [fieldName]: 'valid' }));
+          } catch {
+            setFieldValidation(prev => ({ ...prev, [fieldName]: 'invalid' }));
+          }
+        }, 300);
+      } else {
+        setFieldValidation(prev => ({ ...prev, [fieldName]: 'idle' }));
+      }
+    });
+    
+    return () => {
+      Object.values(timeouts).forEach(clearTimeout);
+    };
+  }, [watchedFields]);
+
   const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -55,6 +106,7 @@ export default function Contact() {
           description: result.message || "We'll get back to you within 24 hours to discuss your project.",
         });
         form.reset();
+        setFieldValidation({});
       } else {
         throw new Error(result.message || 'Failed to send message');
       }
@@ -65,7 +117,43 @@ export default function Contact() {
         description: "Failed to send message. Please try again or contact our sales team directly at sales@kitjistudios.com",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  // Validation icon component with animations
+  const ValidationIcon = ({ fieldName }: { fieldName: string }) => {
+    const status = fieldValidation[fieldName] || 'idle';
+    
+    return (
+      <AnimatePresence mode="wait">
+        {status !== 'idle' && (
+          <motion.div
+            key={status}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute right-3 top-1/2 -translate-y-1/2"
+          >
+            {status === 'validating' && (
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full"
+              />
+            )}
+            {status === 'valid' && (
+              <Check className="w-4 h-4 text-green-500" />
+            )}
+            {status === 'invalid' && (
+              <X className="w-4 h-4 text-red-500" />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
   };
 
   const projectTypes = [
@@ -156,11 +244,47 @@ export default function Contact() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name *</FormLabel>
+                          <FormLabel className="flex items-center gap-2">
+                            Full Name *
+                            {fieldValidation.name === 'valid' && (
+                              <motion.span
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="text-xs text-green-600"
+                              >
+                                ✓ Looks good
+                              </motion.span>
+                            )}
+                          </FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} />
+                            <div className="relative">
+                              <Input 
+                                placeholder="John Doe" 
+                                {...field}
+                                className={cn(
+                                  "pr-10 transition-all duration-200",
+                                  fieldValidation.name === 'valid' && "border-green-500 focus:border-green-600",
+                                  fieldValidation.name === 'invalid' && "border-red-500 focus:border-red-600"
+                                )}
+                              />
+                              <ValidationIcon fieldName="name" />
+                            </div>
                           </FormControl>
-                          <FormMessage />
+                          <AnimatePresence>
+                            {form.formState.errors.name && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <FormMessage className="flex items-center gap-1">
+                                  <AlertCircle className="w-3 h-3" />
+                                  {form.formState.errors.name?.message}
+                                </FormMessage>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </FormItem>
                       )}
                     />
@@ -170,11 +294,48 @@ export default function Contact() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address *</FormLabel>
+                          <FormLabel className="flex items-center gap-2">
+                            Email Address *
+                            {fieldValidation.email === 'valid' && (
+                              <motion.span
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="text-xs text-green-600"
+                              >
+                                ✓ Valid email
+                              </motion.span>
+                            )}
+                          </FormLabel>
                           <FormControl>
-                            <Input placeholder="john@company.com" {...field} />
+                            <div className="relative">
+                              <Input 
+                                placeholder="john@company.com" 
+                                type="email"
+                                {...field}
+                                className={cn(
+                                  "pr-10 transition-all duration-200",
+                                  fieldValidation.email === 'valid' && "border-green-500 focus:border-green-600",
+                                  fieldValidation.email === 'invalid' && "border-red-500 focus:border-red-600"
+                                )}
+                              />
+                              <ValidationIcon fieldName="email" />
+                            </div>
                           </FormControl>
-                          <FormMessage />
+                          <AnimatePresence>
+                            {form.formState.errors.email && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <FormMessage className="flex items-center gap-1">
+                                  <AlertCircle className="w-3 h-3" />
+                                  {form.formState.errors.email?.message}
+                                </FormMessage>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </FormItem>
                       )}
                     />
@@ -185,11 +346,47 @@ export default function Contact() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Company Name *</FormLabel>
+                        <FormLabel className="flex items-center gap-2">
+                          Company Name *
+                          {fieldValidation.company === 'valid' && (
+                            <motion.span
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              className="text-xs text-green-600"
+                            >
+                              ✓ Company verified
+                            </motion.span>
+                          )}
+                        </FormLabel>
                         <FormControl>
-                          <Input placeholder="Your Company Inc." {...field} />
+                          <div className="relative">
+                            <Input 
+                              placeholder="Your Company Inc." 
+                              {...field}
+                              className={cn(
+                                "pr-10 transition-all duration-200",
+                                fieldValidation.company === 'valid' && "border-green-500 focus:border-green-600",
+                                fieldValidation.company === 'invalid' && "border-red-500 focus:border-red-600"
+                              )}
+                            />
+                            <ValidationIcon fieldName="company" />
+                          </div>
                         </FormControl>
-                        <FormMessage />
+                        <AnimatePresence>
+                          {form.formState.errors.company && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <FormMessage className="flex items-center gap-1">
+                                <AlertCircle className="w-3 h-3" />
+                                {form.formState.errors.company?.message}
+                              </FormMessage>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </FormItem>
                     )}
                   />
@@ -251,27 +448,100 @@ export default function Contact() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Project Details *</FormLabel>
+                        <FormLabel className="flex items-center justify-between">
+                          <span className="flex items-center gap-2">
+                            Project Details *
+                            {fieldValidation.message === 'valid' && (
+                              <motion.span
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="text-xs text-green-600"
+                              >
+                                ✓ Detailed description
+                              </motion.span>
+                            )}
+                          </span>
+                          <span className="text-xs text-gray-500">
+                            {field.value?.length || 0}/1000
+                          </span>
+                        </FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="Tell us about your project requirements, challenges, and goals..."
-                            className="min-h-[120px]"
-                            {...field}
-                          />
+                          <div className="relative">
+                            <Textarea 
+                              placeholder="Tell us about your project requirements, challenges, and goals..."
+                              className={cn(
+                                "min-h-[120px] transition-all duration-200",
+                                fieldValidation.message === 'valid' && "border-green-500 focus:border-green-600",
+                                fieldValidation.message === 'invalid' && "border-red-500 focus:border-red-600"
+                              )}
+                              {...field}
+                            />
+                            {fieldValidation.message && fieldValidation.message !== 'idle' && (
+                              <div className="absolute top-3 right-3">
+                                <ValidationIcon fieldName="message" />
+                              </div>
+                            )}
+                          </div>
                         </FormControl>
-                        <FormMessage />
+                        <AnimatePresence>
+                          {form.formState.errors.message && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <FormMessage className="flex items-center gap-1">
+                                <AlertCircle className="w-3 h-3" />
+                                {form.formState.errors.message?.message}
+                              </FormMessage>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </FormItem>
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
-                    className="w-full gradient-bg hover:opacity-90 text-white text-lg py-6"
-                    disabled={form.formState.isSubmitting}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {form.formState.isSubmitting ? "Sending..." : "Send Message"}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                    <Button 
+                      type="submit" 
+                      className="w-full gradient-bg hover:opacity-90 text-white text-lg py-6 relative overflow-hidden"
+                      disabled={isSubmitting || !form.formState.isValid}
+                    >
+                      <AnimatePresence mode="wait">
+                        {isSubmitting ? (
+                          <motion.span
+                            key="submitting"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="flex items-center gap-2"
+                          >
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                            />
+                            Sending Message...
+                          </motion.span>
+                        ) : (
+                          <motion.span
+                            key="send"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="flex items-center gap-2"
+                          >
+                            Send Message
+                            <ArrowRight className="h-5 w-5" />
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </Button>
+                  </motion.div>
                 </form>
               </Form>
             </CardContent>
