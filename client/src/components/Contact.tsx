@@ -49,8 +49,9 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Contact section fade-out as user scrolls further
-  const contactFadeOut = useTransform(scrollY, [800, 1200], [1, 0]);
+  // Contact section fade-out only when bottom of section reaches near top (like hero section)
+  // Hero fades from scroll 0-800, contact should fade much later when user has scrolled through entire section
+  const contactFadeOut = useTransform(scrollY, [1600, 2000], [1, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
