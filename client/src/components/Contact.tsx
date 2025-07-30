@@ -49,9 +49,8 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Additional fade effect for the bottom section - adjusted timing
-  const bottomSectionOpacity = useTransform(scrollY, [600, 1000], [0, 1]);
-  const bottomSectionY = useTransform(scrollY, [600, 1000], [100, 0]);
+  // Contact section fade-out as user scrolls further
+  const contactFadeOut = useTransform(scrollY, [800, 1200], [1, 0]);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -233,7 +232,7 @@ export default function Contact() {
       id="contact" 
       className="py-20 bg-black/90"
       style={{ 
-        opacity: contactOpacity,
+        opacity: useTransform([contactOpacity, contactFadeOut], ([enter, exit]: [number, number]) => Math.min(enter, exit)),
         y: contactY 
       }}
     >

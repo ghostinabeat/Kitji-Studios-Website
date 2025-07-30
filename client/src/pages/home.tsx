@@ -14,8 +14,8 @@ export default function Home() {
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   
   // Scroll-based opacity and position transforms
-  const sectionOpacity = useTransform(scrollY, [600, 1000], [0, 1]);
-  const sectionY = useTransform(scrollY, [600, 1000], [50, 0]);
+  const sectionOpacity = useTransform(scrollY, [800, 1200], [0, 1]);
+  const sectionY = useTransform(scrollY, [800, 1200], [50, 0]);
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Dark themed background that extends through entire page */}
