@@ -102,9 +102,9 @@ export default function Contact() {
     },
     {
       icon: Phone,
-      title: "Schedule a Call",
-      details: "Free 30-minute consultation",
-      description: "Discuss your project requirements"
+      title: "WhatsApp Business",
+      details: "+1 (246) 123-4567",
+      description: "Instant messaging & voice calls"
     },
     {
       icon: MapPin,
@@ -327,7 +327,12 @@ export default function Contact() {
                 <p className="text-gray-600 text-sm mb-3">
                   For existing clients with critical issues, we offer 24/7 emergency support.
                 </p>
-                <Button variant="outline" size="sm" className="border-orange-300 text-orange-700 hover:bg-orange-100">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="border-orange-300 text-orange-700 hover:bg-orange-100"
+                  onClick={() => window.open('mailto:support@kitjistudios.com?subject=URGENT: Emergency Support Request&body=Please describe your emergency:', '_blank')}
+                >
                   Emergency Contact
                 </Button>
               </CardContent>
