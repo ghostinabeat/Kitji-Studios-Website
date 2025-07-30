@@ -105,7 +105,7 @@ export default function ScrollAnimatedHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <span className="text-glow">Impossible.</span>
+            <span className="text-glow">Innovation.</span>
             <br />
             <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
               Driven.
