@@ -229,17 +229,17 @@ export default function ProjectShowcase() {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Our Work
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Project Showcase
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Explore our portfolio of successful projects across Web3, enterprise software, and digital platforms.
           </p>
         </div>
@@ -278,7 +278,7 @@ export default function ProjectShowcase() {
                   layout
                   className="group"
                 >
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-white overflow-hidden">
+                  <Card className="h-full hover:bg-white/10 transition-all duration-300 bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden">
                     <div className="relative">
                       <div className="h-48 bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
                         <IconComponent className="w-16 h-16 text-primary" />
@@ -293,16 +293,16 @@ export default function ProjectShowcase() {
                     <CardContent className="p-6 flex flex-col h-full">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                          <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
                             {project.title}
                           </h3>
                         </div>
                         
-                        <Badge variant="outline" className="mb-3 text-xs">
+                        <Badge variant="outline" className="mb-3 text-xs border-primary/30 text-primary">
                           {project.category}
                         </Badge>
                         
-                        <p className="text-gray-600 mb-4 leading-relaxed">
+                        <p className="text-gray-300 mb-4 leading-relaxed">
                           {project.description}
                         </p>
 
@@ -312,13 +312,13 @@ export default function ProjectShowcase() {
                             {project.metrics.users && (
                               <div className="flex items-center gap-2">
                                 <Users className="w-4 h-4 text-primary" />
-                                <span className="text-gray-600">{project.metrics.users}</span>
+                                <span className="text-gray-300">{project.metrics.users}</span>
                               </div>
                             )}
                             {project.metrics.performance && (
                               <div className="flex items-center gap-2">
                                 <Zap className="w-4 h-4 text-primary" />
-                                <span className="text-gray-600">{project.metrics.performance}</span>
+                                <span className="text-gray-300">{project.metrics.performance}</span>
                               </div>
                             )}
                           </div>
@@ -327,12 +327,12 @@ export default function ProjectShowcase() {
                         {/* Technologies */}
                         <div className="flex flex-wrap gap-1 mb-4">
                           {project.technologies.slice(0, 3).map((tech) => (
-                            <Badge key={tech} variant="secondary" className="text-xs">
+                            <Badge key={tech} variant="secondary" className="text-xs bg-primary/10 text-primary border border-primary/20">
                               {tech}
                             </Badge>
                           ))}
                           {project.technologies.length > 3 && (
-                            <Badge variant="secondary" className="text-xs">
+                            <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border border-primary/20">
                               +{project.technologies.length - 3} more
                             </Badge>
                           )}

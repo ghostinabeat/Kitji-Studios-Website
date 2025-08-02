@@ -128,9 +128,9 @@ export default function Work() {
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-white rounded-2xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Join Our Success Stories?</h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+        <div className="text-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold text-white mb-4">Ready to Join Our Success Stories?</h3>
+          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
             Let's discuss how we can build a custom solution that transforms your business operations 
             and delivers measurable results.
           </p>

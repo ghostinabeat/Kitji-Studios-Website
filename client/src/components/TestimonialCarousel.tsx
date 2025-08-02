@@ -199,17 +199,17 @@ export default function TestimonialCarousel() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <section className="py-20 bg-black/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Client Success Stories
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Real testimonials from satisfied clients across fintech, banking, government, and enterprise sectors.
           </p>
         </div>
@@ -224,7 +224,7 @@ export default function TestimonialCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="bg-white shadow-xl rounded-2xl overflow-hidden"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {/* Testimonial Content */}
@@ -238,22 +238,22 @@ export default function TestimonialCarousel() {
                       </div>
                     </div>
 
-                    <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8 italic">
+                    <blockquote className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 italic">
                       "{currentTestimonial.quote}"
                     </blockquote>
 
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
-                        <Building className="w-8 h-8 text-gray-600" />
+                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center overflow-hidden">
+                        <Building className="w-8 h-8 text-primary" />
                       </div>
                       <div>
-                        <div className="font-bold text-gray-900 text-lg">{currentTestimonial.name}</div>
-                        <div className="text-gray-600">{currentTestimonial.title}</div>
+                        <div className="font-bold text-white text-lg">{currentTestimonial.name}</div>
+                        <div className="text-gray-300">{currentTestimonial.title}</div>
                         <div className="text-primary font-medium">{currentTestimonial.company}</div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                    <div className="flex items-center gap-4 text-sm text-gray-300 mb-6">
                       <Badge variant="outline">{currentTestimonial.industry}</Badge>
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
@@ -275,19 +275,19 @@ export default function TestimonialCarousel() {
                   </div>
 
                   {/* Project Details */}
-                  <div className="bg-gray-50 p-8 lg:p-12 flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <div className="bg-white/5 backdrop-blur-sm p-8 lg:p-12 flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold text-white mb-4">
                       {currentTestimonial.project}
                     </h3>
-                    <Badge variant="secondary" className="mb-6 self-start">
+                    <Badge variant="secondary" className="mb-6 self-start bg-primary/10 text-primary border border-primary/20">
                       {currentTestimonial.projectType}
                     </Badge>
 
                     {/* Key Metrics */}
                     <div className="grid grid-cols-1 gap-4 mb-6">
                       {Object.entries(currentTestimonial.metrics).map(([key, value]) => (
-                        <div key={key} className="flex items-center justify-between p-3 bg-white rounded-lg">
-                          <span className="text-gray-600 capitalize">{key}:</span>
+                        <div key={key} className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg">
+                          <span className="text-gray-300 capitalize">{key}:</span>
                           <span className="font-semibold text-primary">{value}</span>
                         </div>
                       ))}
@@ -295,12 +295,12 @@ export default function TestimonialCarousel() {
 
                     {/* Top Results */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">Key Results:</h4>
+                      <h4 className="font-semibold text-white mb-3">Key Results:</h4>
                       <ul className="space-y-2">
                         {currentTestimonial.results.slice(0, 3).map((result, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <TrendingUp className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-gray-600">{result}</span>
+                            <TrendingUp className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-gray-300">{result}</span>
                           </li>
                         ))}
                       </ul>
