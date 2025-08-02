@@ -81,13 +81,13 @@ export default function Team() {
           {teamStats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <Card key={index} className="text-center p-8 bg-gray-50 border-0 hover:shadow-lg transition-shadow">
+              <Card key={index} className="text-center p-8 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
                 <CardContent className="p-0">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-8 h-8 text-primary" />
                   </div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
+                  <div className="text-gray-300">{stat.label}</div>
                 </CardContent>
               </Card>
             );
@@ -95,30 +95,30 @@ export default function Team() {
         </div>
 
         {/* Expertise Areas */}
-        <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 lg:p-12">
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-12">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Core Expertise Areas</h3>
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">Core Expertise Areas</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Industry Experience</h4>
-                <p className="text-gray-600 mb-4">
+                <h4 className="text-lg font-semibold text-white mb-4">Industry Experience</h4>
+                <p className="text-gray-300 mb-4">
                   Our team boasts extensive expertise across a spectrum of industries, including Insurance, 
                   Banking, Multimedia, Finance, Payroll Management, Logistics Management, and Elections.
                 </p>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   With a global presence, we serve both Government and Commercial sectors, making us 
                   versatile Industry Nomads capable of adapting to any business environment.
                 </p>
               </div>
               
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Technical Specializations</h4>
+                <h4 className="text-lg font-semibold text-white mb-4">Technical Specializations</h4>
                 <div className="grid grid-cols-2 gap-3">
                   {expertise.map((skill, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-gray-700">{skill}</span>
+                      <span className="text-sm text-gray-300">{skill}</span>
                     </div>
                   ))}
                 </div>
@@ -129,31 +129,31 @@ export default function Team() {
 
         {/* Leadership */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Leadership</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership</h3>
           <div className="max-w-4xl mx-auto">
             {leadership.map((leader, index) => {
               const Icon = leader.icon;
               return (
-                <Card key={index} className="bg-white shadow-lg border-0 p-8 mb-8">
+                <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 mb-8">
                   <CardContent className="p-0">
                     <div className="flex flex-col md:flex-row items-start gap-6">
                       <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                         <Icon className="w-10 h-10 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">{leader.name}</h4>
+                        <h4 className="text-xl font-bold text-white mb-2">{leader.name}</h4>
                         <p className="text-primary font-medium mb-2">{leader.role}</p>
-                        <p className="text-gray-600 text-sm mb-4">
+                        <p className="text-gray-300 text-sm mb-4">
                           <a href={`mailto:${leader.email}`} className="text-primary hover:underline">
                             {leader.email}
                           </a>
                         </p>
-                        <p className="text-gray-600 mb-4">{leader.description}</p>
+                        <p className="text-gray-300 mb-4">{leader.description}</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           {leader.specializations.map((spec, specIndex) => (
                             <div key={specIndex} className="flex items-center space-x-2">
                               <div className="w-2 h-2 bg-primary rounded-full"></div>
-                              <span className="text-sm text-gray-700">{spec}</span>
+                              <span className="text-sm text-gray-300">{spec}</span>
                             </div>
                           ))}
                         </div>
@@ -169,10 +169,10 @@ export default function Team() {
         {/* Key Insights */}
         <div className="mt-16 text-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="bg-white shadow-lg border-0 p-6">
+            <Card className="bg-white/5 backdrop-blur-sm border border-white/10 p-6">
               <CardContent className="p-0">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Payment Systems Integration</h4>
-                <p className="text-gray-600">
+                <h4 className="text-lg font-semibold text-white mb-3">Payment Systems Integration</h4>
+                <p className="text-gray-300">
                   We possess valuable insights into banking and payment infrastructure systems. 
                   Our team has intimate knowledge of Real-Time Payment (RTP) systems and played 
                   an integral role in implementing these integrations in Barbados.
@@ -180,10 +180,10 @@ export default function Team() {
               </CardContent>
             </Card>
             
-            <Card className="bg-white shadow-lg border-0 p-6">
+            <Card className="bg-white/5 backdrop-blur-sm border border-white/10 p-6">
               <CardContent className="p-0">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Data-Driven Decision Making</h4>
-                <p className="text-gray-600">
+                <h4 className="text-lg font-semibold text-white mb-3">Data-Driven Decision Making</h4>
+                <p className="text-gray-300">
                   We believe in data-driven decision making. Our experts build and leverage BI tools 
                   to provide valuable insights that inform strategic decisions, improve operations, 
                   and drive business growth.

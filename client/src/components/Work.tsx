@@ -76,14 +76,14 @@ export default function Work() {
       <TestimonialCarousel />
       
       {/* Case Studies */}
-      <section id="work" className="py-20 bg-white">
+      <section id="work" className="py-20 bg-black/90">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Case Studies
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Real Impact, Real Results</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Real Impact, Real Results</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Detailed case studies showcasing how we've delivered transformative solutions 
             across banking, fintech, and government sectors.
           </p>
@@ -92,19 +92,19 @@ export default function Work() {
         {/* Case Studies */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="bg-white shadow-lg border-0 h-full">
+            <Card key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 h-full">
               <CardContent className="p-6 h-full flex flex-col">
                 <div className="mb-4">
-                  <Badge variant="outline" className="mb-3">{study.industry}</Badge>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{study.title}</h3>
-                  <p className="text-gray-600 text-sm">{study.description}</p>
+                  <Badge variant="outline" className="mb-3 border-primary/30 text-primary">{study.industry}</Badge>
+                  <h3 className="text-lg font-bold text-white mb-3">{study.title}</h3>
+                  <p className="text-gray-300 text-sm">{study.description}</p>
                 </div>
                 
                 <div className="mb-4 flex-grow">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Technologies Used:</h4>
+                  <h4 className="text-sm font-semibold text-white mb-2">Technologies Used:</h4>
                   <div className="flex flex-wrap gap-1">
                     {study.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
+                      <Badge key={techIndex} variant="secondary" className="text-xs bg-primary/10 text-primary border border-primary/20">
                         {tech}
                       </Badge>
                     ))}
@@ -112,10 +112,10 @@ export default function Work() {
                 </div>
                 
                 <div className="mt-auto">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Results:</h4>
+                  <h4 className="text-sm font-semibold text-white mb-2">Key Results:</h4>
                   <ul className="space-y-1">
                     {study.results.map((result, resultIndex) => (
-                      <li key={resultIndex} className="flex items-center text-xs text-gray-600">
+                      <li key={resultIndex} className="flex items-center text-xs text-gray-300">
                         <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
                         {result}
                       </li>
