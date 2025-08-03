@@ -49,10 +49,6 @@ export default function Contact() {
   const contactOpacity = useTransform(scrollY, [300, 600], [0, 1]);
   const contactY = useTransform(scrollY, [300, 600], [100, 0]);
   
-  // Contact section should fade out as its bottom approaches the top, like hero section
-  // This creates the transition effect when scrolling toward the "Your Journey Starts Here" section
-  const contactFadeOut = useTransform(scrollY, [1800, 2200], [1, 0]);
-  
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     mode: "onChange",
@@ -233,7 +229,7 @@ export default function Contact() {
       id="contact" 
       className="py-20 bg-black/90"
       style={{ 
-        opacity: useTransform([contactOpacity, contactFadeOut], ([enter, exit]: [number, number]) => Math.min(enter, exit)),
+        opacity: contactOpacity,
         y: contactY 
       }}
     >
@@ -242,7 +238,7 @@ export default function Contact() {
           <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
             Get Started
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Let's Build Something Amazing Together</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Let's discuss your project and see how we can build a custom solution that drives real results for your business.
           </p>
