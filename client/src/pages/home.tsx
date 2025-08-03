@@ -13,9 +13,9 @@ export default function Home() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   
-  // "Your Journey Starts Here" section fades in as contact section fades out
-  const sectionOpacity = useTransform(scrollY, [1800, 2200], [0, 1]);
-  const sectionY = useTransform(scrollY, [1800, 2200], [50, 0]);
+  // "Your Journey Starts Here" section fades in after contact section
+  const sectionOpacity = useTransform(scrollY, [2200, 2600], [0, 1]);
+  const sectionY = useTransform(scrollY, [2200, 2600], [50, 0]);
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Dark themed background that extends through entire page */}
@@ -37,7 +37,8 @@ export default function Home() {
       <main className="relative z-10">
         <ScrollAnimatedHero />
         <Contact />
-        {/* Next Steps Section */}
+        
+        {/* Ready to Transform Your Business Section - Moved to bottom */}
         <motion.section 
           ref={sectionRef}
           className="py-20 bg-black/90"
@@ -52,11 +53,11 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border border-primary/20">
-                Next Steps
+                Ready to Get Started?
               </Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Your Journey Starts Here</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Transform your business with enterprise-grade solutions designed for scale, security, and success.
+                Join the growing list of enterprises that trust Kitji Studios for their critical software solutions.
               </p>
             </div>
 
@@ -92,8 +93,8 @@ export default function Home() {
               </div>
 
               <div className="text-center pt-8 border-t border-white/10">
-                <h4 className="text-xl font-bold text-white mb-4">Ready to Build Something Amazing?</h4>
-                <p className="text-gray-300 mb-6">Join the growing list of enterprises that trust Kitji Studios for their critical software solutions.</p>
+                <h4 className="text-xl font-bold text-white mb-4">Your Journey Starts Here</h4>
+                <p className="text-gray-300 mb-6">Transform your business with enterprise-grade solutions designed for scale, security, and success.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     size="lg"
