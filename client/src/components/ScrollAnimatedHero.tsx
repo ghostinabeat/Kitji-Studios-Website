@@ -3,10 +3,12 @@ import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Code, Zap, Shield, Globe, ChevronDown } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function ScrollAnimatedHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [, setLocation] = useLocation();
   
   const { scrollY } = useScroll();
   
@@ -43,22 +45,26 @@ export default function ScrollAnimatedHero() {
     {
       icon: Code,
       title: "Web3 & Blockchain",
-      description: "Decentralized trust platforms like Utell"
+      description: "Decentralized trust platforms like Utell",
+      link: "/products"
     },
     {
       icon: Shield,
       title: "Enterprise Security",
-      description: "Banking-grade security protocols"
+      description: "Banking-grade security protocols",
+      link: "/services"
     },
     {
       icon: Zap,
       title: "Real-time Systems",
-      description: "High-performance payment processing"
+      description: "High-performance payment processing",
+      link: "/services"
     },
     {
       icon: Globe,
       title: "Cloud Solutions",
-      description: "Scalable SaaS platforms"
+      description: "Scalable SaaS platforms",
+      link: "/services"
     }
   ];
 
@@ -135,13 +141,18 @@ export default function ScrollAnimatedHero() {
               return (
                 <motion.div
                   key={index}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4 card-glow"
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4 card-glow cursor-pointer group"
                   whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 300 }}
+                  onClick={() => setLocation(feature.link)}
                 >
-                  <Icon className="w-8 h-8 text-primary mb-2 mx-auto" />
-                  <h3 className="text-white font-semibold text-sm mb-1">{feature.title}</h3>
-                  <p className="text-gray-400 text-xs">{feature.description}</p>
+                  <Icon className="w-8 h-8 text-primary mb-2 mx-auto group-hover:text-blue-400 transition-colors" />
+                  <h3 className="text-white font-semibold text-sm mb-1 group-hover:text-blue-200 transition-colors">{feature.title}</h3>
+                  <p className="text-gray-400 text-xs group-hover:text-gray-300 transition-colors">{feature.description}</p>
+                  <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight className="w-4 h-4 text-primary mx-auto" />
+                  </div>
                 </motion.div>
               );
             })}
