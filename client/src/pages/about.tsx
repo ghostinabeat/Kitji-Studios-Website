@@ -2,32 +2,39 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Laptop, TrendingUp, Settings, Cog } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function About() {
+  const [, setLocation] = useLocation();
+  
   const services = [
     {
       icon: Laptop,
       title: "Software Development",
       description: "Our team is dedicated to engineering the best custom software solutions for your modern business needs.",
-      color: "bg-blue-100 text-blue-600"
+      color: "bg-blue-100 text-blue-600",
+      link: "/services"
     },
     {
       icon: TrendingUp,
       title: "Business Analysis",
       description: "We are passionate about improving your business processes. Our team will deliver an effective and efficient solution.",
-      color: "bg-emerald-100 text-emerald-600"
+      color: "bg-emerald-100 text-emerald-600",
+      link: "/services"
     },
     {
       icon: Settings,
       title: "Reverse Engineering",
       description: "See something you like? Our team will engineer from the ground up and deliver a unique product tailored to you.",
-      color: "bg-violet-100 text-violet-600"
+      color: "bg-violet-100 text-violet-600",
+      link: "/services"
     },
     {
       icon: Cog,
       title: "Custom Software",
       description: "Bespoke software solutions engineered specifically for your organization's unique requirements and workflows.",
-      color: "bg-amber-100 text-amber-600"
+      color: "bg-amber-100 text-amber-600",
+      link: "/services"
     }
   ];
 
@@ -47,13 +54,20 @@ export default function About() {
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <Card key={index} className="text-center p-6 hover:bg-white/10 transition-all group bg-white/5 backdrop-blur-sm border border-white/10">
+                  <Card 
+                    key={index} 
+                    className="text-center p-6 hover:bg-white/10 transition-all group bg-white/5 backdrop-blur-sm border border-white/10 cursor-pointer hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20"
+                    onClick={() => setLocation(service.link)}
+                  >
                     <CardContent className="p-0">
-                      <div className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform bg-primary/10`}>
-                        <Icon className="w-8 h-8 text-primary" />
+                      <div className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform bg-primary/10 group-hover:bg-primary/20`}>
+                        <Icon className="w-8 h-8 text-primary group-hover:text-blue-400 transition-colors" />
                       </div>
-                      <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
-                      <p className="text-gray-300">{service.description}</p>
+                      <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-200 transition-colors">{service.title}</h3>
+                      <p className="text-gray-300 group-hover:text-gray-200 transition-colors">{service.description}</p>
+                      <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-primary text-sm font-medium">Learn More →</span>
+                      </div>
                     </CardContent>
                   </Card>
                 );
