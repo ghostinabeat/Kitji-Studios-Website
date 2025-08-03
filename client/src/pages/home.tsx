@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import ScrollAnimatedHero from "@/components/ScrollAnimatedHero";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,11 +11,11 @@ import { ArrowRight } from "lucide-react";
 export default function Home() {
   const { scrollY } = useScroll();
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   
-  // "Your Journey Starts Here" section fades in after contact section
-  const sectionOpacity = useTransform(scrollY, [2200, 2600], [0, 1]);
-  const sectionY = useTransform(scrollY, [2200, 2600], [50, 0]);
+  // "Ready to Transform Your Business" section - smooth scroll-based animation
+  // Starts fading in after contact section ends (around 1800px)
+  const sectionOpacity = useTransform(scrollY, [1700, 2100], [0, 1]);
+  const sectionY = useTransform(scrollY, [1700, 2100], [40, 0]);
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Dark themed background that extends through entire page */}
@@ -42,9 +42,6 @@ export default function Home() {
         <motion.section 
           ref={sectionRef}
           className="py-20 bg-black/90"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ 
             opacity: sectionOpacity,
             y: sectionY 
