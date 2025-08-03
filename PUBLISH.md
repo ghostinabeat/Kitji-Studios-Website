@@ -31,37 +31,25 @@ Your Kitji Studios website is now **fully prepared** for publication to GitHub a
 - **Git Setup**: ✅ .gitignore configured for clean repository
 - **Dependencies**: ✅ All packages properly listed in package.json
 
-## 🔧 Publishing Steps
+## 🔧 Publishing via Replit Git Interface
 
-Since I cannot directly push to Git due to system restrictions, here are the steps for you to publish:
+### Use Replit's Git Pane (Recommended)
 
-### 1. Initialize/Connect Repository
-```bash
-# If starting fresh
-git init
-git remote add origin https://github.com/ghostinabeat/Kitji-Studios-Website.git
+1. **Access Git Interface**: In Replit browser, go to Tools > Git
+2. **Stage All Changes**: Select all modified files in the Git pane
+3. **Commit Changes**: Add descriptive commit message
+4. **Push to GitHub**: Click push to update your repository
 
-# If repository already exists
-git remote set-url origin https://github.com/ghostinabeat/Kitji-Studios-Website.git
+### Commit Message Template
 ```
+Complete Kitji Studios website with modern design
 
-### 2. Add All Files
-```bash
-git add .
-git commit -m "Initial commit: Complete Kitji Studios website
-
-- Dark-themed React/TypeScript application
-- All 6 pages implemented with animations  
-- Contact form with email integration
-- Responsive design and accessibility
+- Dark theme implementation across all pages
+- Interactive hero tiles with navigation
+- Smooth scroll animations using Framer Motion
+- Working contact form with email integration
+- Responsive design for all devices
 - Complete documentation suite
-- Ready for production deployment"
-```
-
-### 3. Push to GitHub
-```bash
-git branch -M main
-git push -u origin main
 ```
 
 ## 🌐 Deployment Options

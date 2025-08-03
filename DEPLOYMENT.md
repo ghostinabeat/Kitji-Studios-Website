@@ -1,27 +1,13 @@
 # Deployment Guide - Kitji Studios Website
 
-## 🚀 Publishing to GitHub
+## 🚀 Deployment Options
 
-This guide covers publishing the Kitji Studios website to the GitHub repository at: `https://github.com/ghostinabeat/Kitji-Studios-Website`
+### Replit Deployment (Recommended)
+1. Click the "Deploy" button in Replit
+2. Configure environment variables in Replit secrets
+3. Your site will be available at `[your-repl-name].replit.app`
 
-## 📋 Pre-Deployment Checklist
-
-### ✅ Repository Setup
-- [ ] Clone or initialize the GitHub repository
-- [ ] Ensure all project files are committed
-- [ ] Create proper branch structure (main/develop)
-
-### ✅ Environment Configuration
-- [ ] Set up environment variables in `.env.example`
-- [ ] Configure RESEND_API_KEY for email functionality
-- [ ] Verify database connections (optional)
-
-### ✅ Build Verification
-- [ ] Run `npm run build` to verify production build
-- [ ] Test the application in production mode
-- [ ] Verify all routes and animations work correctly
-
-## 🔧 Local Development Setup
+### Local Development Setup
 
 ```bash
 # Clone the repository
@@ -39,30 +25,18 @@ cp .env.example .env
 npm run dev
 ```
 
-## 🌐 Deployment Options
+## 🌐 Alternative Deployment Options
 
-### Option 1: Replit Deployment
-1. Click the "Deploy" button in Replit
-2. Configure environment variables in Replit secrets
-3. Your site will be available at `[your-repl-name].replit.app`
-
-### Option 2: Vercel Deployment
+### Vercel Deployment
 1. Connect your GitHub repository to Vercel
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on push to main branch
 
-### Option 3: Netlify Deployment
+### Netlify Deployment
 1. Connect GitHub repository to Netlify
 2. Build command: `npm run build`
 3. Publish directory: `dist`
 4. Set environment variables in Netlify settings
-
-### Option 4: Traditional VPS/Server
-1. Clone repository on server
-2. Install Node.js 18+
-3. Run `npm install && npm run build`
-4. Start with `npm start`
-5. Use PM2 or similar for process management
 
 ## 🔒 Environment Variables
 
