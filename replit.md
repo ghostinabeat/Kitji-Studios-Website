@@ -2,21 +2,20 @@
 
 This is a full-stack web application for Kitji Studios, a software development company, **now completely refactored to C# using Blazor WebAssembly and ASP.NET Core**. The application serves as a company portfolio website with contact form functionality, maintaining the exact same dark-themed UI and interactive features as the original React/TypeScript version. Its core purpose is to showcase Kitji Studios' capabilities in enterprise software development, with a focus on their flagship products Utell and Pelas, and services like WhatsApp Business Integration.
 
-## Project Status: C# Refactoring Complete ✅
+## Project Status: Hybrid Architecture Complete ✅
 
-The project has been successfully refactored from React/TypeScript + Express.js to C# using Blazor WebAssembly + ASP.NET Core while maintaining 100% identical UI and functionality:
+The project has been successfully modernized using a hybrid architecture: **React TypeScript frontend + ASP.NET Core backend**, replacing the original Express.js backend while maintaining 100% identical UI and functionality:
 
-### ✅ C# Refactoring Completed:
-- **Blazor WebAssembly Frontend**: Identical dark theme implementation across all pages
-- **ASP.NET Core Backend**: Complete API refactoring with same endpoints and functionality
-- **Contact Form**: Fully functional with FluentValidation, same email integration via SendGrid/Resend
-- **Scroll Animations**: JavaScript interop maintaining exact same animations as React version
-- **Interactive Hero Tiles**: Same clickable service tiles with identical styling and behavior
-- **Navigation**: Responsive Blazor component with mobile hamburger menu
-- **Entity Framework**: In-memory database setup matching original storage interface
-- **Responsive Design**: Maintained mobile-first approach with custom CSS (no Tailwind dependency)
-- **Service Architecture**: Proper dependency injection and service pattern implementation
-- **All Components**: Logo, Footer, ScrollAnimatedHero, Contact, About page - all recreated in Blazor
+### ✅ Hybrid Architecture Completed:
+- **React Frontend**: Maintained original TypeScript components with enhanced API integration
+- **ASP.NET Core Backend**: Complete API replacement with same endpoints and enhanced functionality
+- **Contact Form**: Enhanced with FluentValidation, professional email templates via SendGrid/Resend
+- **Seamless Integration**: React components communicate directly with ASP.NET Core API endpoints
+- **Enhanced Error Handling**: Comprehensive validation and error responses from both frontend and backend
+- **Type Safety**: Full TypeScript interfaces matching C# DTOs for end-to-end type safety
+- **Entity Framework**: In-memory database with production-ready migration path to SQL Server/PostgreSQL
+- **Service Architecture**: Clean architecture with interfaces, dependency injection, and proper separation
+- **Professional Email Templates**: HTML emails with company branding for both notifications and confirmations
 
 ### 📚 Comprehensive Documentation:
 - **README.md**: Detailed project overview, setup, and usage instructions
@@ -31,15 +30,15 @@ The project has been successfully refactored from React/TypeScript + Express.js 
 - **.env.example**: Environment variables template
 - **.gitignore**: Comprehensive exclusions for clean repository
 
-### 🔧 C# Technical Stack:
-- **Frontend**: Blazor WebAssembly + C# + Custom CSS (matching Tailwind styling)
-- **Backend**: ASP.NET Core 8.0 + Entity Framework Core + FluentValidation
-- **Email Service**: SendGrid .NET SDK integration (maintains Resend API compatibility) 
-- **State Management**: Blazor component state with service injection
-- **Animations**: JavaScript interop for scroll-based animations (matching Framer Motion behavior)
-- **Routing**: Blazor Router with same page structure
+### 🔧 Hybrid Technical Stack:
+- **Frontend**: React 18 + TypeScript + Vite + TailwindCSS + Framer Motion (unchanged)
+- **Backend**: ASP.NET Core 8.0 + Entity Framework Core + FluentValidation (new)
+- **API Integration**: Enhanced HTTP client with ASP.NET Core support and comprehensive error handling
+- **Email Service**: SendGrid .NET SDK with professional HTML templates (maintains Resend compatibility)
+- **State Management**: TanStack Query for API state + React Hook Form for forms (unchanged)
 - **Database**: Entity Framework Core with in-memory provider (production-ready for SQL Server/PostgreSQL)
-- **Architecture**: Clean architecture with interfaces, services, and proper dependency injection
+- **Architecture**: Clean separation between React frontend and ASP.NET backend with proper API contracts
+- **Documentation**: Comprehensive workflow diagrams and component interaction documentation
 
 # User Preferences
 
@@ -58,16 +57,16 @@ The application follows a monorepo structure, separating client-side and server-
 - **User Feedback**: Toast notifications, real-time form validation with animated icons and dynamic border colors.
 
 ## Technical Implementations
-- **Frontend**: Blazor WebAssembly SPA with C#.NET 8.0, server-side rendering capable.
-- **Backend**: ASP.NET Core Web API with C#.NET 8.0.
+- **Frontend**: React 18 SPA with TypeScript, built with Vite, unchanged from original.
+- **Backend**: ASP.NET Core 8.0 Web API with C#.NET 8.0, replacing Express.js completely.
 - **Database**: Entity Framework Core with in-memory provider (ready for SQL Server/PostgreSQL).
-- **UI Framework**: Custom CSS components matching shadcn/ui styling (no external CSS framework dependencies).
-- **State Management**: Blazor component state with scoped service injection.
-- **Routing**: Blazor Router with page-based routing system.
-- **Forms**: Blazor EditForm with FluentValidation for robust validation.
-- **API Communication**: HttpClient with System.Net.Http.Json for type-safe API calls.
-- **Email Integration**: SendGrid .NET SDK with fallback compatibility for Resend API keys.
-- **Storage**: Entity Framework Core with repository pattern and interface abstraction.
+- **UI Framework**: shadcn/ui components with TailwindCSS, maintained as original.
+- **State Management**: TanStack Query for server state + React Hook Form for forms.
+- **Routing**: Wouter for client-side routing, unchanged from original.
+- **Forms**: React Hook Form with enhanced ASP.NET Core API integration and comprehensive validation.
+- **API Communication**: Enhanced HTTP client with ASP.NET Core support, error handling, and type safety.
+- **Email Integration**: SendGrid .NET SDK with professional HTML templates and Resend compatibility.
+- **Storage**: Entity Framework Core with service pattern and clean architecture principles.
 
 ## Feature Specifications
 - **Homepage**: Prioritizes services, features an enhanced hero section with enterprise messaging, quick service preview cards, and contact form.
@@ -80,25 +79,31 @@ The application follows a monorepo structure, separating client-side and server-
 - **Testimonial Carousel**: Comprehensive carousel with authentic client success stories, auto-play, and detailed modals.
 
 ## System Design Choices
-- **C# Solution Structure**: Clean separation between Client (Blazor WebAssembly), Server (ASP.NET Core), and Shared (Models/DTOs) projects.
+- **Hybrid Architecture**: React frontend with ASP.NET Core backend, combining frontend flexibility with backend robustness.
 - **Entity Framework In-Memory**: Allows rapid development and testing with seamless migration path to SQL Server/PostgreSQL.
-- **Blazor WebAssembly**: Selected for C# full-stack development with client-side execution and strong typing.
-- **Custom CSS Components**: Replicated shadcn/ui styling without external dependencies for maximum control and performance.
+- **API-First Design**: Clean separation between frontend and backend through well-defined REST API contracts.
+- **Enhanced HTTP Client**: Improved React-to-ASP.NET communication with comprehensive error handling and type safety.
 - **Service-Oriented Architecture**: Proper dependency injection with interfaces for testability and maintainability.
-- **FluentValidation**: Enterprise-grade validation with expressive, maintainable validation rules and localization support.
+- **FluentValidation**: Enterprise-grade validation matching React frontend validation for consistent user experience.
+- **Professional Email Templates**: HTML email templates with company branding for enhanced user experience.
 
 # External Dependencies
 
-- **C# Backend Dependencies**:
+- **React Frontend Dependencies (Unchanged)**:
+    - `@tanstack/react-query`: Server state management with enhanced ASP.NET integration.
+    - `@hookform/resolvers`: Form validation integration with Zod schemas.
+    - `zod`: Schema validation matching ASP.NET FluentValidation rules.
+    - `@radix-ui/*`: Accessible UI primitives for consistent component behavior.
+    - `tailwindcss`: Utility-first CSS framework for responsive design.
+    - `framer-motion`: Animation library for smooth scroll-based transitions.
+    - `lucide-react`: Icon library for consistent visual elements.
+- **ASP.NET Core Backend Dependencies (New)**:
     - `Microsoft.EntityFrameworkCore`: ORM for database operations with LINQ support.
     - `Microsoft.EntityFrameworkCore.InMemory`: In-memory database provider for development.
     - `FluentValidation.AspNetCore`: Powerful validation framework with fluent API.
     - `SendGrid`: Enterprise-grade email delivery service (.NET SDK).
-    - `Microsoft.AspNetCore.Cors`: Cross-origin resource sharing support.
-- **C# Frontend Dependencies**:
-    - `Microsoft.AspNetCore.Components.WebAssembly`: Blazor WebAssembly framework.
-    - `System.Net.Http.Json`: Type-safe HTTP client with JSON serialization.
-    - `Microsoft.AspNetCore.Components.Forms`: Enhanced form components and validation.
-- **JavaScript Interop**:
-    - Custom scroll animation library (no external dependencies).
-    - Native browser APIs for smooth scrolling and DOM manipulation.
+    - `Microsoft.AspNetCore.Cors`: Cross-origin resource sharing support for React frontend.
+    - `Serilog.AspNetCore`: Structured logging with JSON output for monitoring.
+- **Integration Layer**:
+    - Enhanced HTTP client bridging React and ASP.NET Core with type safety.
+    - Comprehensive error handling and validation across both frontend and backend.

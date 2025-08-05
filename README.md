@@ -1,278 +1,306 @@
-# Kitji Studios - Enterprise Software Development Company Website
+# Kitji Studios Website - React + ASP.NET Core
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+A sophisticated full-stack web application showcasing Kitji Studios' enterprise software development capabilities. Features a React TypeScript frontend with an ASP.NET Core backend, maintaining premium dark-themed design with smooth animations and interactive elements.
 
-A sophisticated, dark-themed React-based website for Kitji Studios, showcasing enterprise software development capabilities with advanced scroll animations and modern UI components.
+## 🏗️ Architecture Overview
 
-## 🚀 Features
+This project uses a hybrid architecture combining the best of both worlds:
 
-### 🎨 Design & User Experience
-- **Premium Dark Theme**: Consistent black/blue color palette across all pages
-- **Scroll-Based Animations**: Hero-style fade transitions using Framer Motion
-- **Responsive Design**: Mobile-first approach with Tailwind breakpoints
-- **Accessibility**: Built on Radix UI primitives for screen reader compatibility
-- **Enterprise Aesthetics**: Professional layout targeting banking, insurance, and government sectors
+- **Frontend**: React 18 + TypeScript + Vite + TailwindCSS
+- **Backend**: ASP.NET Core 8.0 + Entity Framework Core + FluentValidation
+- **Database**: Entity Framework with In-Memory provider (production-ready for SQL Server/PostgreSQL)
+- **Email**: SendGrid integration with HTML templates
+- **Deployment**: Ready for both development and production environments
 
-### 🛠 Technical Stack
-- **Frontend**: React 18 with TypeScript and Vite
-- **Backend**: Express.js REST API with TypeScript
-- **Database**: PostgreSQL with Drizzle ORM (configured for future expansion)
-- **Styling**: Tailwind CSS with shadcn/ui components
-- **Animations**: Framer Motion for scroll-triggered transitions
-- **Forms**: React Hook Form with Zod validation
-- **Email**: Resend integration for contact form submissions
-- **Routing**: Wouter for client-side navigation
-
-### 📄 Pages & Functionality
-- **Homepage**: Enhanced hero section with enterprise messaging and service previews
-- **About**: Company overview and value propositions
-- **Services**: Business solutions with case studies and testimonials
-- **Products**: Flagship products (Utell, Pelas, WhatsApp Business Integration)
-- **Team**: Real team members with authentic specializations
-- **Work**: Project showcase with interactive filtering and detailed case studies
-- **Contact**: Comprehensive contact form with project scoping and budget selection
-
-## 🏗 Project Structure
+## 📁 Project Structure
 
 ```
-kitji-studios/
-├── client/                 # Frontend React application
+├── client/                          # React Frontend
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── lib/           # Utility functions and configurations
-│   │   ├── App.tsx        # Main application component
-│   │   ├── main.tsx       # Application entry point
-│   │   └── index.css      # Global styles and theme
-│   └── index.html         # HTML template
-├── server/                # Backend Express.js application
-│   ├── index.ts          # Server entry point
-│   ├── routes.ts         # API route definitions
-│   ├── storage.ts        # Data storage interface
-│   ├── email.ts          # Email service integration
-│   └── vite.ts           # Vite development server integration
-├── shared/               # Shared types and schemas
-│   └── schema.ts         # Zod schemas and TypeScript types
-├── docs/                 # Project documentation
-├── package.json          # Dependencies and scripts
-├── tsconfig.json         # TypeScript configuration
-├── tailwind.config.ts    # Tailwind CSS configuration
-├── vite.config.ts        # Vite build configuration
-└── README.md            # This file
+│   │   ├── components/              # Reusable UI components
+│   │   │   ├── Contact.tsx          # Contact form with ASP.NET integration
+│   │   │   ├── Navigation.tsx       # Responsive navigation
+│   │   │   └── ScrollAnimatedHero.tsx # Hero section with animations
+│   │   ├── pages/                   # Page components
+│   │   │   ├── home.tsx            # Landing page
+│   │   │   ├── about.tsx           # Company information
+│   │   │   └── not-found.tsx       # 404 page
+│   │   ├── lib/
+│   │   │   └── queryClient.ts      # HTTP client with ASP.NET support
+│   │   └── hooks/                  # Custom React hooks
+│   └── index.html
+├── Server.NET/                      # ASP.NET Core Backend
+│   ├── Controllers/
+│   │   └── ContactController.cs     # API endpoints
+│   ├── Services/
+│   │   ├── ContactService.cs        # Business logic
+│   │   └── EmailService.cs          # Email handling
+│   ├── Models/
+│   │   └── ContactSubmission.cs     # Data models & DTOs
+│   ├── Data/
+│   │   └── ApplicationDbContext.cs  # Entity Framework setup
+│   └── Program.cs                   # Application startup
+├── docs/                           # Comprehensive documentation
+│   ├── architecture/               # System design diagrams
+│   ├── api/                        # API documentation
+│   └── components/                 # Component documentation
+└── server/                         # Original Node.js backend (legacy)
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
-- PostgreSQL database (optional, uses in-memory storage by default)
-- Resend API key for email functionality
 
-### Installation
+- Node.js 18+ (for React frontend)
+- .NET 8.0 SDK (for ASP.NET Core backend)
+- SendGrid API key (for email functionality)
+
+### Development Setup
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/kitji-studios/kitji-website.git
-   cd kitji-website
+   git clone <repository-url>
+   cd kitji-studios-website
    ```
 
-2. **Install dependencies**
+2. **Setup React Frontend**
    ```bash
+   cd client
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Setup ASP.NET Core Backend**
    ```bash
-   cp .env.example .env
-   ```
-   
-   Required environment variables:
-   ```env
-   RESEND_API_KEY=your_resend_api_key_here
-   ```
-   
-   Optional (for database functionality):
-   ```env
-   DATABASE_URL=postgresql://username:password@localhost:5432/kitji_db
+   cd Server.NET
+   dotnet restore
+   dotnet build
    ```
 
-4. **Start the development server**
+4. **Configure Environment Variables**
    ```bash
+   # Create .env file in root directory
+   VITE_API_BASE_URL=http://localhost:5001
+   SENDGRID_API_KEY=your_sendgrid_api_key_here
+   RESEND_API_KEY=your_resend_api_key_here  # Alternative to SendGrid
+   ```
+
+5. **Start Development Servers**
+   
+   **Option A: React Frontend + ASP.NET Backend**
+   ```bash
+   # Terminal 1: Start ASP.NET Core API (Port 5001)
+   cd Server.NET
+   dotnet run
+   
+   # Terminal 2: Start React dev server (Port 5173)
+   cd client
+   npm run dev
+   ```
+   
+   **Option B: React Frontend + Node.js Backend (Legacy)**
+   ```bash
+   # Single terminal: Start both servers
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to `http://localhost:5000`
+6. **Access the Application**
+   - Frontend: http://localhost:5173
+   - ASP.NET API: http://localhost:5001
+   - API Documentation: http://localhost:5001/api/docs
 
-### Build for Production
+## 🔧 Key Features
 
-```bash
-# Build the application
-npm run build
+### Frontend Features
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Dark Theme**: Premium black/blue color scheme throughout
+- **Smooth Animations**: Scroll-based transitions and micro-interactions
+- **Interactive Elements**: Clickable hero tiles, hover effects
+- **Form Validation**: Real-time validation with user-friendly messages
+- **Accessibility**: ARIA labels, keyboard navigation, screen reader support
 
-# Start production server
-npm start
-```
+### Backend Features
+- **RESTful API**: Clean, documented endpoints
+- **Data Validation**: FluentValidation with detailed error messages
+- **Email Integration**: Professional HTML email templates
+- **Error Handling**: Comprehensive error responses and logging
+- **Database Ready**: Entity Framework with migration support
+- **CORS Configured**: Properly configured for React frontend
 
-## 🛠 Development
+### Business Features
+- **Contact Form**: Project inquiry form with budget selection
+- **Email Notifications**: Automated emails to sales team and customers
+- **Admin Interface**: (Future) Dashboard for managing inquiries
+- **Analytics Ready**: Structured for future analytics integration
 
-### Available Scripts
+## 📄 API Documentation
 
-```bash
-npm run dev      # Start development server with hot reload
-npm run build    # Build for production
-npm start        # Start production server
-npm run check    # Run TypeScript type checking
-npm run db:push  # Push database schema changes (when using database)
-```
+The ASP.NET Core backend provides a comprehensive API for contact form management:
 
-### Code Style & Architecture
+### Contact Endpoints
 
-This project follows modern React and TypeScript best practices:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/contact` | Submit contact form |
+| GET | `/api/contact` | Get all submissions (admin) |
+| GET | `/api/contact/paginated` | Get paginated submissions |
+| GET | `/api/contact/{id}` | Get specific submission |
+| GET | `/api/contact/email-status` | Check email service status |
 
-- **TypeScript-first**: Full type safety across frontend and backend
-- **Component Architecture**: Small, reusable components with clear responsibilities
-- **Custom Hooks**: Business logic extracted into reusable hooks
-- **Schema Validation**: Zod schemas for runtime type checking
-- **Error Boundaries**: Graceful error handling and user feedback
-- **Performance**: Optimized with React Query for efficient data fetching
+### Health Check
 
-### Key Components
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | API health status |
 
-#### Core UI Components
-- `ScrollAnimatedHero`: Main hero section with scroll-based fade animations
-- `Navigation`: Responsive navigation with mobile menu
-- `Contact`: Contact form with validation and email integration
-- `ProjectShowcase`: Interactive project gallery with filtering
-- `TestimonialCarousel`: Auto-playing testimonial carousel
+For detailed API documentation, see [`docs/api/CONTACT_API_DOCUMENTATION.md`](docs/api/CONTACT_API_DOCUMENTATION.md).
 
-#### Feature Components
-- `CloudProducts`: Product showcase for Utell and Pelas
-- `Services`: Service presentation with case studies
-- `Team`: Team member profiles
-- `Footer`: Site footer with contact information
+## 🔄 Data Flow
+
+### Contact Form Submission Flow
+
+1. **User Input**: User fills contact form in React frontend
+2. **Client Validation**: React Hook Form + Zod validation
+3. **API Request**: HTTP POST to `/api/contact` endpoint
+4. **Server Validation**: FluentValidation in ASP.NET Core
+5. **Database Storage**: Entity Framework saves to database
+6. **Email Notifications**: SendGrid sends emails to sales team and user
+7. **Response**: Success/error response back to React frontend
+8. **UI Update**: Success message or error display
+
+For detailed data flow diagrams, see [`docs/architecture/DATA_FLOW_DIAGRAMS.md`](docs/architecture/DATA_FLOW_DIAGRAMS.md).
 
 ## 🎨 Design System
 
 ### Color Palette
-```css
-/* Primary Colors */
---primary: 213 94% 68%        /* Blue accent */
---background: 224 71% 4%      /* Dark background */
---foreground: 213 31% 91%     /* Light text */
-
-/* Surface Colors */
---card: 224 71% 4%            /* Card backgrounds */
---muted: 215 28% 17%          /* Muted backgrounds */
---border: 216 34% 17%         /* Border colors */
-```
+- **Primary**: Blue (#3b82f6) - Used for CTAs and highlights
+- **Background**: Black (#000000) - Main background
+- **Foreground**: White (#ffffff) - Primary text
+- **Muted**: Gray variations for secondary content
 
 ### Typography
-- **Headings**: Inter font family, bold weights
-- **Body**: Inter font family, regular weight
-- **Scale**: Responsive typography using Tailwind's type scale
+- **Headings**: Bold, large text for hierarchy
+- **Body**: Clean, readable font with proper line spacing
+- **Interactive**: Hover states and active indicators
 
-### Spacing & Layout
-- **Grid System**: CSS Grid and Flexbox for layouts
-- **Breakpoints**: Mobile-first responsive design
-- **Spacing**: Consistent 8px base unit system
+### Components
+- **Cards**: Semi-transparent backgrounds with blur effects
+- **Buttons**: Gradient backgrounds with hover animations
+- **Forms**: Consistent styling with validation states
 
-## 📧 Email Integration
+## 🔐 Security Features
 
-The contact form integrates with Resend for reliable email delivery:
+### Frontend Security
+- **Input Sanitization**: XSS prevention on all user inputs
+- **CSRF Protection**: Token-based validation (future)
+- **Content Security Policy**: Restrictive CSP headers
 
-```typescript
-// server/email.ts
-export async function sendContactEmail(data: ContactFormData) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  
-  await resend.emails.send({
-    from: 'noreply@kitjistudios.com',
-    to: 'contact@kitjistudios.com',
-    subject: `New Contact: ${data.subject}`,
-    html: generateEmailTemplate(data)
-  });
-}
-```
+### Backend Security
+- **Input Validation**: Comprehensive validation with FluentValidation
+- **CORS Policy**: Restricted to frontend origins only
+- **Rate Limiting**: Protection against form spam (future)
+- **SQL Injection Prevention**: Entity Framework parameterized queries
+
+## 📊 Monitoring & Logging
+
+### Frontend Monitoring
+- **Error Tracking**: Client-side error logging
+- **Performance Metrics**: Core Web Vitals tracking
+- **User Analytics**: Interaction tracking (future)
+
+### Backend Logging
+- **Structured Logging**: Serilog with JSON output
+- **Request Logging**: All API requests logged
+- **Error Tracking**: Detailed error information
+- **Performance Monitoring**: Request timing and database queries
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Set environment variables in Vercel dashboard
-3. Deploy automatically on push to main branch
-
-### Manual Deployment
+### Development Deployment
 ```bash
-# Build the application
+# Build React frontend
+cd client
 npm run build
 
-# Deploy dist/public (frontend) and dist/index.js (backend) to your hosting provider
+# Publish ASP.NET Core backend
+cd Server.NET
+dotnet publish -c Release -o ../dist/backend
 ```
 
-### Environment Variables for Production
-```env
-NODE_ENV=production
-RESEND_API_KEY=your_production_api_key
-DATABASE_URL=your_production_database_url (optional)
+### Production Deployment
+
+#### Option 1: Separate Deployments
+- **Frontend**: Deploy to Vercel, Netlify, or CDN
+- **Backend**: Deploy to Azure App Service, AWS ECS, or similar
+
+#### Option 2: Single ASP.NET Host
+- Configure ASP.NET Core to serve React build files
+- Deploy as single application to Azure, AWS, or on-premises
+
+For detailed deployment instructions, see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
+## 🧪 Testing
+
+### Frontend Testing
+```bash
+cd client
+npm run test          # Unit tests with Jest
+npm run test:e2e      # End-to-end tests with Playwright
+npm run test:coverage # Coverage report
 ```
+
+### Backend Testing
+```bash
+cd Server.NET
+dotnet test           # Unit and integration tests
+dotnet test --collect:"XPlat Code Coverage"  # Coverage report
+```
+
+## 📈 Performance
+
+### Frontend Optimizations
+- **Code Splitting**: Route-based lazy loading
+- **Image Optimization**: WebP format with fallbacks
+- **Bundle Analysis**: Tree shaking and minification
+- **Caching**: Service worker caching strategy
+
+### Backend Optimizations
+- **Database**: Optimized Entity Framework queries
+- **Caching**: In-memory caching for static data
+- **Compression**: Response compression middleware
+- **Connection Pooling**: Efficient database connections
 
 ## 🤝 Contributing
 
-We welcome contributions to improve the Kitji Studios website. Please follow these guidelines:
-
-### Development Workflow
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Code Standards
-- Follow existing TypeScript and React patterns
-- Use meaningful component and variable names
-- Add JSDoc comments for complex functions
-- Ensure responsive design for all changes
-- Test on multiple browsers and devices
+### Development Guidelines
+- Follow TypeScript/C# coding standards
+- Write tests for new features
+- Update documentation as needed
+- Ensure accessibility compliance
 
-### Commit Message Format
-```
-type(scope): description
-
-feat(contact): add project budget selection
-fix(hero): resolve scroll animation timing
-docs(readme): update installation instructions
-```
-
-## 📄 License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🏢 About Kitji Studios
+## 🆘 Support
 
-Kitji Studios is an enterprise software development company specializing in:
+For questions and support:
+- **Email**: sales@kitjistudios.com
+- **Documentation**: See the `docs/` directory
+- **Issues**: Create a GitHub issue
 
-- **Web3 & Blockchain Solutions**: Decentralized identity platforms (Utell)
-- **Enterprise Software**: Resource management systems (Pelas)
-- **Communication Platforms**: WhatsApp Business integration
-- **Banking & FinTech**: Real-time payment systems
-- **Government Solutions**: Secure, compliant software systems
+## 🔗 Related Documentation
 
-### Flagship Products
-- **Utell**: Web3 trust platform with IAAM capabilities
-- **Pelas**: Personalized Electronic Ledger Accounting System
-- **WhatsApp Business Integration**: Enterprise communication solutions
-
-### Contact Information
-- **Website**: [kitjistudios.com](https://kitjistudios.com)
-- **Email**: contact@kitjistudios.com
-- **Location**: Caribbean Region
+- [React Components Documentation](docs/components/REACT_COMPONENTS_DOCUMENTATION.md)
+- [ASP.NET API Documentation](docs/api/CONTACT_API_DOCUMENTATION.md)
+- [Architecture Workflow](docs/architecture/REACT_ASPNET_WORKFLOW.md)
+- [Data Flow Diagrams](docs/architecture/DATA_FLOW_DIAGRAMS.md)
 
 ---
 
-Built with ❤️ by the Kitji Studios team
+**Built with ❤️ by Kitji Studios** - Showcasing enterprise-grade software development capabilities.
