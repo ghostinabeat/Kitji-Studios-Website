@@ -1,0 +1,267 @@
+@using KitjiStudios.Client.Services
+@inject INavigationService NavigationService
+
+<!-- Hero Section with Interactive Tiles -->
+<section class="hero-section fade-on-scroll">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Content -->
+            <div class="hero-content fade-in-up">
+                <div class="badge mb-6 bg-primary/10 text-primary border border-primary/20">
+                    Enterprise Software Development
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    Building the Future of
+                    <span class="text-gradient">Enterprise Software</span>
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Kitji Studios delivers cutting-edge software solutions for banking, insurance, and government sectors. 
+                    Our flagship products Utell and Pelas serve thousands of users across critical enterprise systems.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="/contact" class="btn-primary">
+                        Start Your Project
+                        <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <a href="/work" class="btn-secondary">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Interactive Service Tiles -->
+            <div class="hero-tiles fade-in-up">
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach (var tile in heroTiles)
+                    {
+                        <div class="hero-tile" @onclick="() => NavigateToTile(tile)">
+                            <div class="tile-icon">
+                                @if (tile.Icon == "code")
+                                {
+                                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                }
+                                else if (tile.Icon == "shield")
+                                {
+                                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                }
+                                else if (tile.Icon == "trending")
+                                {
+                                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                }
+                                else if (tile.Icon == "users")
+                                {
+                                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                                    </svg>
+                                }
+                            </div>
+                            <h3 class="tile-title">@tile.Title</h3>
+                            <p class="tile-description">@tile.Description</p>
+                            <div class="tile-arrow">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private readonly List<HeroTile> heroTiles = new()
+    {
+        new HeroTile
+        {
+            Title = "Custom Development",
+            Description = "Tailored software solutions for your business",
+            Icon = "code",
+            NavigateTo = "/services"
+        },
+        new HeroTile
+        {
+            Title = "Enterprise Security",
+            Description = "Bank-grade security for critical systems",
+            Icon = "shield",
+            NavigateTo = "/services"
+        },
+        new HeroTile
+        {
+            Title = "Flagship Products",
+            Description = "Utell & Pelas serving thousands",
+            Icon = "trending",
+            NavigateTo = "/products"
+        },
+        new HeroTile
+        {
+            Title = "Expert Team",
+            Description = "Experienced developers & analysts",
+            Icon = "users",
+            NavigateTo = "/team"
+        }
+    };
+
+    private void NavigateToTile(HeroTile tile)
+    {
+        NavigationService.NavigateTo(tile.NavigateTo);
+    }
+
+    private class HeroTile
+    {
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string Icon { get; set; } = "";
+        public string NavigateTo { get; set; } = "";
+    }
+}
+
+<style>
+    .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 2rem 0;
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-tiles {
+        position: relative;
+    }
+
+    .hero-tile {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-tile:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-4px);
+        border-color: hsl(207, 90%, 54%);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .tile-icon {
+        color: hsl(207, 90%, 54%);
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .hero-tile:hover .tile-icon {
+        transform: scale(1.1);
+        color: #60a5fa;
+    }
+
+    .tile-title {
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .hero-tile:hover .tile-title {
+        color: #dbeafe;
+    }
+
+    .tile-description {
+        color: rgb(156, 163, 175);
+        font-size: 0.875rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+    }
+
+    .hero-tile:hover .tile-description {
+        color: rgb(209, 213, 219);
+    }
+
+    .tile-arrow {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        color: hsl(207, 90%, 54%);
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .hero-tile:hover .tile-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Responsive grid and spacing */
+    .container { max-width: 1200px; margin: 0 auto; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gap-4 { gap: 1rem; }
+    .gap-12 { gap: 3rem; }
+    .items-center { align-items: center; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-12 { margin-bottom: 3rem; }
+    .text-4xl { font-size: 2.25rem; }
+    .text-xl { font-size: 1.25rem; }
+    .font-bold { font-weight: 700; }
+    .text-white { color: white; }
+    .text-gray-300 { color: rgb(209, 213, 219); }
+    .leading-relaxed { line-height: 1.625; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .h-5 { height: 1.25rem; }
+    .w-5 { width: 1.25rem; }
+    .h-8 { height: 2rem; }
+    .w-8 { width: 2rem; }
+    .h-4 { height: 1rem; }
+    .w-4 { width: 1rem; }
+    .ml-2 { margin-left: 0.5rem; }
+
+    @media (min-width: 640px) {
+        .sm\\:text-5xl { font-size: 3rem; }
+        .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .sm\\:flex-row { flex-direction: row; }
+    }
+
+    @media (min-width: 1024px) {
+        .lg\\:text-6xl { font-size: 3.75rem; }
+        .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+</style>

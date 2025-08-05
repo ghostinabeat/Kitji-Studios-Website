@@ -1,0 +1,375 @@
+@using KitjiStudios.Client.Services
+@using KitjiStudios.Shared.Models
+@inject IContactService ContactService
+@inject IJSRuntime JSRuntime
+
+<section id="contact" class="py-20 bg-black/95 fade-on-scroll">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="badge mb-4 bg-primary/10 text-primary border border-primary/20">
+                Get In Touch
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Tell us about your project requirements and we'll provide a detailed proposal within 24 hours.
+            </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    @if (!isSubmitted)
+                    {
+                        <form @onsubmit="HandleSubmit" @onsubmit:preventDefault="true" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" id="name" @bind="contactForm.Name" 
+                                           class="form-input @(GetFieldClass("Name"))" 
+                                           placeholder="John Smith" required />
+                                    @if (validationErrors.ContainsKey("Name"))
+                                    {
+                                        <div class="error-message">@validationErrors["Name"]</div>
+                                    }
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" id="email" @bind="contactForm.Email" 
+                                           class="form-input @(GetFieldClass("Email"))" 
+                                           placeholder="john@company.com" required />
+                                    @if (validationErrors.ContainsKey("Email"))
+                                    {
+                                        <div class="error-message">@validationErrors["Email"]</div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company" class="form-label">Company Name</label>
+                                <input type="text" id="company" @bind="contactForm.Company" 
+                                       class="form-input" placeholder="Your Company Ltd." />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectType" class="form-label">Project Type *</label>
+                                <select id="projectType" @bind="contactForm.ProjectType" 
+                                        class="form-input @(GetFieldClass("ProjectType"))" required>
+                                    <option value="">Select project type...</option>
+                                    <option value="Custom Software Development">Custom Software Development</option>
+                                    <option value="API Integration">API Integration</option>
+                                    <option value="Mobile Application">Mobile Application</option>
+                                    <option value="Web Application">Web Application</option>
+                                    <option value="Database Design">Database Design</option>
+                                    <option value="System Integration">System Integration</option>
+                                    <option value="Consulting">Consulting</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                @if (validationErrors.ContainsKey("ProjectType"))
+                                {
+                                    <div class="error-message">@validationErrors["ProjectType"]</div>
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget" class="form-label">Budget Range</label>
+                                <select id="budget" @bind="contactForm.Budget" class="form-input">
+                                    <option value="">Select budget range...</option>
+                                    <option value="Under $10,000">Under $10,000</option>
+                                    <option value="$10,000 - $25,000">$10,000 - $25,000</option>
+                                    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+                                    <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+                                    <option value="$100,000+">$100,000+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Project Details *</label>
+                                <textarea id="message" @bind="contactForm.Message" rows="6" 
+                                          class="form-input @(GetFieldClass("Message"))" 
+                                          placeholder="Tell us about your project requirements, timeline, and any specific technical needs..."
+                                          required></textarea>
+                                @if (validationErrors.ContainsKey("Message"))
+                                {
+                                    <div class="error-message">@validationErrors["Message"]</div>
+                                }
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full" disabled="@isSubmitting">
+                                @if (isSubmitting)
+                                {
+                                    <span>Sending...</span>
+                                }
+                                else
+                                {
+                                    <span>Send Project Inquiry</span>
+                                    <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                }
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="success-message">
+                            <div class="success-icon">
+                                <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4">Thank You!</h3>
+                            <p class="text-gray-300 mb-6">@submitMessage</p>
+                            <button @onclick="ResetForm" class="btn-secondary">
+                                Send Another Message
+                            </button>
+                        </div>
+                    }
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-white mb-6">Let's Build Something Amazing</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Email</h4>
+                                <p class="text-gray-300">sales@kitjistudios.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Response Time</h4>
+                                <p class="text-gray-300">Within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Enterprise Grade</h4>
+                                <p class="text-gray-300">Bank-level security & compliance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private ContactSubmissionRequest contactForm = new();
+    private Dictionary<string, string> validationErrors = new();
+    private bool isSubmitting = false;
+    private bool isSubmitted = false;
+    private string submitMessage = "";
+
+    private async Task HandleSubmit()
+    {
+        validationErrors.Clear();
+        isSubmitting = true;
+
+        try
+        {
+            var response = await ContactService.SubmitContactAsync(contactForm);
+
+            if (response.Success)
+            {
+                isSubmitted = true;
+                submitMessage = response.Message;
+                contactForm = new ContactSubmissionRequest();
+            }
+            else
+            {
+                if (response.Errors != null)
+                {
+                    foreach (var error in response.Errors)
+                    {
+                        // Simple error mapping - you might want to make this more sophisticated
+                        if (error.Contains("Name"))
+                            validationErrors["Name"] = error;
+                        else if (error.Contains("Email"))
+                            validationErrors["Email"] = error;
+                        else if (error.Contains("Project"))
+                            validationErrors["ProjectType"] = error;
+                        else if (error.Contains("Message"))
+                            validationErrors["Message"] = error;
+                    }
+                }
+                else
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", response.Message);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "An error occurred. Please try again.");
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private void ResetForm()
+    {
+        isSubmitted = false;
+        contactForm = new ContactSubmissionRequest();
+        validationErrors.Clear();
+    }
+
+    private string GetFieldClass(string fieldName)
+    {
+        return validationErrors.ContainsKey(fieldName) ? "error" : "";
+    }
+}
+
+<style>
+    .contact-form-container {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        color: white;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: hsl(207, 90%, 54%);
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-input.error {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+    }
+
+    .error-message {
+        color: #fca5a5;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .success-message {
+        text-align: center;
+        padding: 3rem 2rem;
+    }
+
+    .success-icon {
+        color: #10b981;
+        margin: 0 auto 1.5rem;
+    }
+
+    .contact-info .card {
+        padding: 2rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .contact-icon {
+        color: hsl(207, 90%, 54%);
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Layout classes */
+    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .text-center { text-align: center; }
+    .mb-16 { margin-bottom: 4rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-4xl { max-width: 56rem; }
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .gap-6 { gap: 1.5rem; }
+    .gap-12 { gap: 3rem; }
+    .space-y-6 > * + * { margin-top: 1.5rem; }
+    .text-3xl { font-size: 1.875rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .text-xl { font-size: 1.25rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .text-white { color: white; }
+    .text-gray-300 { color: rgb(209, 213, 219); }
+    .w-full { width: 100%; }
+    .ml-2 { margin-left: 0.5rem; }
+    .h-4 { height: 1rem; }
+    .w-4 { width: 1rem; }
+    .h-6 { height: 1.5rem; }
+    .w-6 { width: 1.5rem; }
+    .h-12 { height: 3rem; }
+    .w-12 { width: 3rem; }
+
+    @media (min-width: 640px) {
+        .sm\\:text-4xl { font-size: 2.25rem; }
+        .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .sm\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1024px) {
+        .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+</style>
