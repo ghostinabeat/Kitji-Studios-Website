@@ -2,261 +2,397 @@
 
 Thank you for your interest in contributing to the Kitji Studios website! This document provides guidelines and information for contributors.
 
+## 🏗️ Architecture Overview
+
+This project uses a hybrid architecture:
+- **Frontend**: React 18 + TypeScript + Vite + TailwindCSS
+- **Backend**: ASP.NET Core 8.0 + Entity Framework Core
+- **Database**: Entity Framework with In-Memory provider (production-ready for SQL Server/PostgreSQL)
+- **Email**: SendGrid integration with HTML templates
+
+## 📋 Prerequisites
+
+Before contributing, ensure you have:
+- Node.js 18+ (for React frontend)
+- .NET 8.0 SDK (for ASP.NET Core backend)
+- Git
+- A code editor (VS Code recommended)
+
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+ and npm
-- Git
-- Basic knowledge of React, TypeScript, and Tailwind CSS
-- Familiarity with modern web development practices
+### 1. Fork and Clone
 
-### Development Setup
-1. Fork the repository on GitHub
-2. Clone your fork locally:
+```bash
+# Fork the repository on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/kitji-studios-website.git
+cd kitji-studios-website
+
+# Add the original repository as upstream
+git remote add upstream https://github.com/original-owner/kitji-studios-website.git
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install Node.js dependencies for React frontend
+npm install
+
+# Restore .NET dependencies for ASP.NET Core backend
+cd Server.NET
+dotnet restore
+cd ..
+```
+
+### 3. Environment Setup
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your configuration
+# At minimum, you'll need:
+# - VITE_API_BASE_URL=http://localhost:5001
+# - SENDGRID_API_KEY or RESEND_API_KEY for email testing
+```
+
+### 4. Start Development Servers
+
+```bash
+# Terminal 1: Start ASP.NET Core API (Port 5001)
+cd Server.NET
+dotnet run
+
+# Terminal 2: Start React dev server (Port 5173)
+npm run dev
+```
+
+## 🔧 Development Workflow
+
+### Branch Naming Convention
+
+- `feature/description` - New features
+- `bugfix/description` - Bug fixes
+- `docs/description` - Documentation updates
+- `refactor/description` - Code refactoring
+
+### Commit Message Format
+
+Follow conventional commits:
+
+```
+type(scope): description
+
+Examples:
+feat(contact): add form validation
+fix(api): resolve email sending issue
+docs(readme): update installation instructions
+style(ui): improve button hover effects
+```
+
+### Development Process
+
+1. **Create a Branch**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kitji-website.git
-   cd kitji-website
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Copy environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-5. Start the development server:
-   ```bash
-   npm run dev
+   git checkout -b feature/your-feature-name
    ```
 
-## 📋 Development Guidelines
+2. **Make Changes**
+   - Follow the coding standards below
+   - Test your changes thoroughly
+   - Update documentation if needed
 
-### Code Style
-- **TypeScript**: Use strict TypeScript with proper typing
-- **React**: Use functional components with hooks
-- **Styling**: Use Tailwind CSS classes, avoid custom CSS unless necessary
-- **Components**: Create small, reusable components with single responsibilities
-- **Naming**: Use descriptive names for components, functions, and variables
+3. **Commit Changes**
+   ```bash
+   git add .
+   git commit -m "feat(scope): description"
+   ```
 
-### File Structure
+4. **Push and Create PR**
+   ```bash
+   git push origin feature/your-feature-name
+   # Create Pull Request on GitHub
+   ```
+
+## 📝 Coding Standards
+
+### TypeScript/React Standards
+
+- Use TypeScript for all React components
+- Follow functional component pattern with hooks
+- Use proper TypeScript interfaces for props and state
+- Implement proper error boundaries
+- Use React Hook Form for forms with Zod validation
+
+```typescript
+// Good: Proper TypeScript interface
+interface ContactFormProps {
+  onSubmit: (data: ContactFormData) => void;
+  isLoading: boolean;
+}
+
+// Good: Functional component with proper typing
+const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isLoading }) => {
+  // Component logic
+};
+```
+
+### C# ASP.NET Core Standards
+
+- Follow C# naming conventions (PascalCase for public members)
+- Use proper async/await patterns
+- Implement proper dependency injection
+- Use FluentValidation for input validation
+- Follow repository pattern for data access
+
+```csharp
+// Good: Proper service interface
+public interface IContactService
+{
+    Task<ContactSubmission> CreateContactSubmissionAsync(ContactSubmissionRequest request);
+}
+
+// Good: Proper async implementation
+public async Task<ContactSubmission> CreateContactSubmissionAsync(ContactSubmissionRequest request)
+{
+    // Implementation with proper error handling
+}
+```
+
+### CSS/Styling Standards
+
+- Use TailwindCSS utility classes
+- Follow mobile-first responsive design
+- Maintain dark theme consistency
+- Use CSS custom properties for theme colors
+- Implement proper hover and focus states
+
+### File Organization
+
 ```
 client/src/
 ├── components/          # Reusable UI components
-│   ├── ui/             # Basic UI primitives (buttons, inputs, etc.)
-│   ├── layout/         # Layout components (header, footer, navigation)
-│   └── features/       # Feature-specific components
 ├── pages/              # Page components
 ├── hooks/              # Custom React hooks
-├── lib/                # Utility functions and configurations
+├── lib/                # Utility functions and configuration
 └── types/              # TypeScript type definitions
+
+Server.NET/
+├── Controllers/        # API endpoints
+├── Services/           # Business logic
+├── Models/            # Data models and DTOs
+├── Data/              # Entity Framework configuration
+└── Middleware/        # Custom middleware
 ```
 
-### Component Guidelines
-1. **Component Structure**:
-   ```typescript
-   interface ComponentProps {
-     // Define props with TypeScript
-   }
-   
-   export default function Component({ prop1, prop2 }: ComponentProps) {
-     // Component logic
-     return (
-       <div className="tailwind-classes">
-         {/* JSX content */}
-       </div>
-     );
-   }
-   ```
+## 🧪 Testing Guidelines
 
-2. **Styling Conventions**:
-   - Use Tailwind CSS utility classes
-   - Follow mobile-first responsive design
-   - Maintain dark theme consistency
-   - Use semantic color tokens (primary, secondary, etc.)
+### Frontend Testing
 
-3. **State Management**:
-   - Use React hooks for local state
-   - Use TanStack Query for server state
-   - Keep state as close to components as needed
+- Write unit tests for utilities and hooks
+- Write integration tests for components
+- Test API integration with mock services
+- Ensure accessibility compliance
 
-### Dark Theme Guidelines
-The website uses a consistent dark theme. When adding new components:
+```bash
+# Run frontend tests
+npm test
 
-- **Background Colors**: `bg-black/90`, `bg-white/5`, `bg-white/10`
-- **Text Colors**: `text-white` (headings), `text-gray-300` (body text)
-- **Borders**: `border-white/10`, `border-white/20`
-- **Cards**: `bg-white/5 backdrop-blur-sm border border-white/10`
-- **Accent Color**: Use `text-primary` for the blue accent color
-
-### Animation Guidelines
-- Use Framer Motion for complex animations
-- Follow the existing scroll-based fade pattern
-- Keep animations subtle and professional
-- Ensure animations don't interfere with accessibility
-
-## 🛠 Pull Request Process
-
-### Before Submitting
-1. **Test your changes thoroughly**:
-   ```bash
-   npm run check    # TypeScript type checking
-   npm run build    # Production build test
-   ```
-
-2. **Ensure responsive design**:
-   - Test on mobile, tablet, and desktop viewports
-   - Verify dark theme consistency
-   - Check animation performance
-
-3. **Follow commit message format**:
-   ```
-   type(scope): description
-   
-   feat(contact): add project budget selection
-   fix(hero): resolve scroll animation timing
-   docs(readme): update installation instructions
-   style(ui): improve button hover states
-   refactor(api): simplify email service logic
-   ```
-
-### Pull Request Template
-```markdown
-## Description
-Brief description of changes made.
-
-## Type of Change
-- [ ] Bug fix (non-breaking change that fixes an issue)
-- [ ] New feature (non-breaking change that adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work)
-- [ ] Documentation update
-
-## Testing
-- [ ] Tested on desktop browsers (Chrome, Firefox, Safari)
-- [ ] Tested on mobile devices
-- [ ] Dark theme consistency verified
-- [ ] Animations working smoothly
-- [ ] Form validation working correctly
-
-## Screenshots
-Include screenshots of significant UI changes.
-
-## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Self-review completed
-- [ ] Comments added to complex code sections
-- [ ] Documentation updated if needed
+# Run with coverage
+npm run test:coverage
 ```
+
+### Backend Testing
+
+- Write unit tests for services and utilities
+- Write integration tests for controllers
+- Test database operations
+- Test email functionality with mock providers
+
+```bash
+# Run backend tests
+cd Server.NET
+dotnet test
+
+# Run with coverage
+dotnet test --collect:"XPlat Code Coverage"
+```
+
+## 📖 Documentation Requirements
+
+### Code Documentation
+
+- Document all public APIs
+- Use JSDoc for TypeScript functions
+- Use XML comments for C# methods
+- Include examples in complex functions
+
+### Component Documentation
+
+- Document component props and usage
+- Include Storybook stories for UI components
+- Provide usage examples
+- Document accessibility features
+
+### API Documentation
+
+- Document all endpoints with OpenAPI/Swagger
+- Include request/response examples
+- Document error responses
+- Provide authentication details
+
+## 🎨 Design Guidelines
+
+### UI/UX Principles
+
+- **Dark Theme**: Maintain black/blue color scheme
+- **Accessibility**: WCAG 2.1 AA compliance
+- **Responsive**: Mobile-first approach
+- **Performance**: Optimize for Core Web Vitals
+- **Animation**: Smooth, purposeful transitions
+
+### Component Design
+
+- Use consistent spacing (Tailwind's spacing scale)
+- Implement proper loading states
+- Provide clear error messages
+- Include hover and focus indicators
+
+## 🔒 Security Guidelines
+
+### Frontend Security
+
+- Sanitize all user inputs
+- Validate data before API calls
+- Use HTTPS in production
+- Implement proper CSP headers
+
+### Backend Security
+
+- Use FluentValidation for all inputs
+- Implement proper CORS policies
+- Use parameterized queries
+- Log security events appropriately
+
+## 📊 Performance Guidelines
+
+### Frontend Performance
+
+- Lazy load components and routes
+- Optimize images (WebP format)
+- Minimize bundle size
+- Implement proper caching strategies
+
+### Backend Performance
+
+- Use async/await consistently
+- Optimize database queries
+- Implement response caching
+- Use connection pooling
 
 ## 🐛 Bug Reports
 
-### Before Reporting
-- Search existing issues to avoid duplicates
-- Test on multiple browsers and devices
-- Clear browser cache and try again
+When reporting bugs, include:
 
-### Bug Report Template
-```markdown
-**Bug Description**
-Clear description of the bug.
-
-**Steps to Reproduce**
-1. Go to '...'
-2. Click on '...'
-3. Scroll to '...'
-4. See error
-
-**Expected Behavior**
-What should happen.
-
-**Screenshots**
-Add screenshots if applicable.
-
-**Environment**
-- OS: [e.g., macOS, Windows, Linux]
-- Browser: [e.g., Chrome 91, Firefox 89]
-- Device: [e.g., iPhone 12, Desktop]
-- Screen size: [e.g., 1920x1080, 375x667]
-```
+1. **Environment**: OS, browser, .NET version
+2. **Steps to Reproduce**: Clear, numbered steps
+3. **Expected Behavior**: What should happen
+4. **Actual Behavior**: What actually happens
+5. **Screenshots**: If applicable
+6. **Console Errors**: Browser console or server logs
 
 ## 💡 Feature Requests
 
-### Feature Request Template
+For new features, provide:
+
+1. **Problem Statement**: What problem does this solve?
+2. **Proposed Solution**: How should it work?
+3. **User Stories**: Who benefits and how?
+4. **Technical Considerations**: Implementation notes
+5. **Mockups**: Visual designs if applicable
+
+## 📋 Pull Request Guidelines
+
+### Before Submitting
+
+- [ ] Code follows project standards
+- [ ] Tests pass locally
+- [ ] Documentation is updated
+- [ ] No console errors or warnings
+- [ ] Accessibility requirements met
+- [ ] Performance impact considered
+
+### PR Description Template
+
 ```markdown
-**Feature Description**
-Clear description of the proposed feature.
+## Description
+Brief description of changes
 
-**Problem It Solves**
-What problem does this feature address?
+## Type of Change
+- [ ] Bug fix
+- [ ] New feature  
+- [ ] Documentation update
+- [ ] Refactoring
 
-**Proposed Solution**
-Detailed description of the solution.
+## Testing
+- [ ] Unit tests added/updated
+- [ ] Integration tests pass
+- [ ] Manual testing completed
 
-**Alternatives Considered**
-Other approaches you've considered.
+## Screenshots (if applicable)
+[Add screenshots here]
 
-**Additional Context**
-Screenshots, mockups, or examples.
+## Checklist
+- [ ] Code follows style guidelines
+- [ ] Self-review completed
+- [ ] Documentation updated
+- [ ] No breaking changes
 ```
 
-## 📝 Documentation
+## 🔄 Review Process
 
-### Code Documentation
-- Add JSDoc comments for complex functions
-- Document component props with TypeScript interfaces
-- Include usage examples for reusable components
+1. **Automated Checks**: CI/CD pipeline runs tests
+2. **Code Review**: Maintainer reviews code quality
+3. **Testing**: Changes tested in staging environment
+4. **Approval**: Approved changes merged to main
+5. **Deployment**: Changes deployed to production
 
-### README Updates
-- Update installation instructions if dependencies change
-- Document new environment variables
-- Update feature list for significant additions
+## 🎯 Areas for Contribution
 
-## 🎨 Design Contributions
+### High Priority
+- Additional page components (Services, Products, Team, Work)
+- Admin dashboard for contact management
+- Enhanced email templates
+- Performance optimizations
 
-### UI/UX Improvements
-- Follow the existing design system
-- Maintain brand consistency
-- Ensure accessibility compliance
-- Test with screen readers when possible
+### Medium Priority
+- Unit test coverage improvements
+- Accessibility enhancements
+- SEO optimizations
+- Analytics integration
 
-### Asset Guidelines
-- Use SVG for icons and simple graphics
-- Optimize images for web (WebP format preferred)
-- Maintain consistent visual style
-- Follow brand colors and typography
-
-## 🚀 Deployment
-
-### Staging Environment
-- All PRs are automatically deployed to staging
-- Test your changes in the staging environment
-- Verify functionality before requesting review
-
-### Production Deployment
-- Only maintainers can deploy to production
-- All changes must pass code review
-- Automated tests must pass
-- Performance impact must be considered
+### Good First Issues
+- Documentation improvements
+- UI polish and animations
+- Error message improvements
+- Code style consistency
 
 ## 📞 Getting Help
 
-### Communication Channels
 - **GitHub Issues**: For bugs and feature requests
-- **GitHub Discussions**: For questions and general discussion
-- **Email**: contact@kitjistudios.com for private inquiries
+- **GitHub Discussions**: For questions and ideas
+- **Email**: sales@kitjistudios.com for urgent matters
 
-### Code Review Process
-1. Submit your pull request
-2. Automated checks will run
-3. A maintainer will review your code
-4. Address any feedback or requested changes
-5. Once approved, your PR will be merged
+## 📄 License
 
-## 🏆 Recognition
+By contributing, you agree that your contributions will be licensed under the MIT License.
 
-Contributors will be recognized in:
-- GitHub contributors list
-- Project documentation
-- Release notes for significant contributions
+## 🙏 Recognition
 
-Thank you for contributing to the Kitji Studios website! Your efforts help us showcase our capabilities and serve our clients better.
+Contributors will be acknowledged in:
+- README.md contributors section
+- CHANGELOG.md for significant changes
+- GitHub releases for version contributions
+
+---
+
+Thank you for contributing to the Kitji Studios website! Your efforts help showcase enterprise-grade software development capabilities.

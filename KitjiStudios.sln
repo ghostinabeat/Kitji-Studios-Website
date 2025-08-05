@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitjiStudios.Client", "Client\KitjiStudios.Client.csproj", "{B8C8D7F1-8B4A-4C5E-9F2A-1D3E4F5A6B7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitjiStudios.Server", "Server\KitjiStudios.Server.csproj", "{A7B6C5D4-7C3B-4D2E-8E1F-0C9D8E7F6A5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitjiStudios.Shared", "Shared\KitjiStudios.Shared.csproj", "{C9D8E7F6-9E5F-4F6G-7G8H-1I2J3K4L5M6N}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8C8D7F1-8B4A-4C5E-9F2A-1D3E4F5A6B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C8D7F1-8B4A-4C5E-9F2A-1D3E4F5A6B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C8D7F1-8B4A-4C5E-9F2A-1D3E4F5A6B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C8D7F1-8B4A-4C5E-9F2A-1D3E4F5A6B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B6C5D4-7C3B-4D2E-8E1F-0C9D8E7F6A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B6C5D4-7C3B-4D2E-8E1F-0C9D8E7F6A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B6C5D4-7C3B-4D2E-8E1F-0C9D8E7F6A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B6C5D4-7C3B-4D2E-8E1F-0C9D8E7F6A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D8E7F6-9E5F-4F6G-7G8H-1I2J3K4L5M6N}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D8E7F6-9E5F-4F6G-7G8H-1I2J3K4L5M6N}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D8E7F6-9E5F-4F6G-7G8H-1I2J3K4L5M6N}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D8E7F6-9E5F-4F6G-7G8H-1I2J3K4L5M6N}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
